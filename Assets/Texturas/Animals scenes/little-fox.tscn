@@ -1,0 +1,117 @@
+[gd_scene load_steps=18 format=3 uid="uid://3wvf2bf17rt5"]
+
+[ext_resource type="Script" uid="uid://drimggf0vgomk" path="res://Animals scenes/little_fox.gd" id="1_bu8g8"]
+[ext_resource type="Texture2D" uid="uid://8i2u8g1xxy8p" path="res://Background animals/little fox/fox.png" id="1_e8rsi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bu8g8"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cgmcc"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sgvm1"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hs663"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tktnf"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5w3n6"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6tcs8"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(144, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0l82h"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(168, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4mqxm"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(192, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fidi6"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(216, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu2xp"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(240, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gy5o0"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(264, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xghor"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(288, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_30g4k"]
+atlas = ExtResource("1_e8rsi")
+region = Rect2(312, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_sff2i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bu8g8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cgmcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sgvm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hs663")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tktnf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5w3n6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6tcs8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0l82h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4mqxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fidi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu2xp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gy5o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xghor")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_30g4k")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 15.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_bu8g8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_sff2i")
+animation = &"idle"

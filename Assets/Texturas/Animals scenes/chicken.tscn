@@ -1,0 +1,145 @@
+[gd_scene load_steps=22 format=3 uid="uid://bh070tjkwugps"]
+
+[ext_resource type="Texture2D" uid="uid://cqhwe03r4s6py" path="res://Background animals/chicken/chicken_eyes .png" id="1_ggf0g"]
+[ext_resource type="Script" uid="uid://yi2eh5lwnwp8" path="res://Animals scenes/chicken.gd" id="1_ybu5p"]
+[ext_resource type="Texture2D" uid="uid://s2mtjtx3p5rm" path="res://Background animals/chicken/chicken_pecking .png" id="2_ybu5p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6x1i0"]
+atlas = ExtResource("1_ggf0g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_syeao"]
+atlas = ExtResource("1_ggf0g")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fakhd"]
+atlas = ExtResource("1_ggf0g")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2l0mn"]
+atlas = ExtResource("1_ggf0g")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kbsn3"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jpqe1"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rgbn2"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0syp"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h46r4"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lb0vj"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cll1"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_omesj"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(112, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sydk3"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(128, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i05ta"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(144, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hee6d"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(160, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wrhsr"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(176, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fk52k"]
+atlas = ExtResource("2_ybu5p")
+region = Rect2(192, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ayx2w"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6x1i0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_syeao")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fakhd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2l0mn")
+}],
+"loop": true,
+"name": &"eyes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kbsn3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jpqe1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rgbn2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0syp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h46r4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lb0vj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5cll1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_omesj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sydk3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i05ta")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hee6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wrhsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fk52k")
+}],
+"loop": true,
+"name": &"pecking",
+"speed": 15.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ybu5p")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 3
+sprite_frames = SubResource("SpriteFrames_ayx2w")
+animation = &"pecking"

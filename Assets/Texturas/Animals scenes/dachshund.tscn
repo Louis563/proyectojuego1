@@ -1,0 +1,115 @@
+[gd_scene load_steps=18 format=3 uid="uid://bfo03fi04pxns"]
+
+[ext_resource type="Texture2D" uid="uid://co2t3ehip5dba" path="res://Background animals/dachshund/Dachshund-eyes.png" id="1_coy3g"]
+[ext_resource type="Script" uid="uid://b3aot7brhy7h4" path="res://Animals scenes/dachshund.gd" id="1_wml46"]
+[ext_resource type="Texture2D" uid="uid://3on8r2ctxb4o" path="res://Background animals/dachshund/Dachshund-walk.png" id="2_wml46"]
+[ext_resource type="Texture2D" uid="uid://d4gtnufwuwaru" path="res://Background animals/dachshund/Dachshund-sly-walk.png" id="3_yvntb"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33hu5"]
+atlas = ExtResource("1_coy3g")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6o1pa"]
+atlas = ExtResource("1_coy3g")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohsll"]
+atlas = ExtResource("2_wml46")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yt8ru"]
+atlas = ExtResource("2_wml46")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k6tdb"]
+atlas = ExtResource("2_wml46")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oxxb7"]
+atlas = ExtResource("2_wml46")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drq0h"]
+atlas = ExtResource("2_wml46")
+region = Rect2(96, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ivn6"]
+atlas = ExtResource("2_wml46")
+region = Rect2(120, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rn5ke"]
+atlas = ExtResource("3_yvntb")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g6xea"]
+atlas = ExtResource("3_yvntb")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aijb3"]
+atlas = ExtResource("3_yvntb")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82qh6"]
+atlas = ExtResource("3_yvntb")
+region = Rect2(72, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5ccaq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33hu5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6o1pa")
+}],
+"loop": true,
+"name": &"eyes",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohsll")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yt8ru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k6tdb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oxxb7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drq0h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ivn6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rn5ke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g6xea")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aijb3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82qh6")
+}],
+"loop": true,
+"name": &"walk sly",
+"speed": 10.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_wml46")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5ccaq")
+animation = &"walk sly"

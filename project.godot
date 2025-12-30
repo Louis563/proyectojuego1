@@ -54,6 +54,12 @@ Derecha={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Jugador"
+2d_physics/layer_5="Estructuras"
+2d_physics/layer_6="Estructuras_pie"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

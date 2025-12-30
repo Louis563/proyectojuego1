@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://drd4a2uk6tfa"]
+[gd_scene load_steps=15 format=3 uid="uid://drd4a2uk6tfa"]
 
 [ext_resource type="Script" uid="uid://y2magp12vdee" path="res://Assets/Jugador/Scrips/jugador.gd" id="1_05kpm"]
 [ext_resource type="Texture2D" uid="uid://bhpa3x06gdx66" path="res://Assets/Jugador/player2.png" id="2_05kpm"]
+[ext_resource type="Script" uid="uid://batquyt4ji1a7" path="res://Assets/Jugador/Scrips/jugadormaquinaestado.gd" id="3_tgynk"]
+[ext_resource type="Script" uid="uid://b83vyj134aowj" path="res://Assets/Jugador/Scrips/estado_idle.gd" id="4_kussy"]
+[ext_resource type="Script" uid="uid://kbcsuf0cfbtg" path="res://Assets/Jugador/Scrips/estado_walk.gd" id="5_b3w8r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_edjgo"]
 
@@ -151,3 +154,12 @@ libraries = {
 }
 
 [node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="MaquinaEstado" type="Node" parent="."]
+script = ExtResource("3_tgynk")
+
+[node name="Idle" type="Node" parent="MaquinaEstado"]
+script = ExtResource("4_kussy")
+
+[node name="Walk" type="Node" parent="MaquinaEstado"]
+script = ExtResource("5_b3w8r")

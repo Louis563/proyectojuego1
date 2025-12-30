@@ -1,22 +1,27 @@
 class_name Jugador extends CharacterBody2D
 
-var move_speed : float = 100.0
 var direccion : Vector2 = Vector2.ZERO
 var direcciones : Vector2 = Vector2.DOWN
-var estado : String = "idle"
+#var estado : String = "idle"
+#var move_speed : float = 100.0
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var maquina_estado: JugadorMaquinaEstado = $MaquinaEstado
+
+func _ready() -> void:
+	maquina_estado.Inicializar( self )
+	pass
 
 func _process(delta: float) -> void:
 	
 	direccion.x = Input.get_action_strength("Derecha") - Input.get_action_strength("Izquierda")
 	direccion.y = Input.get_action_strength("Abajo") - Input.get_action_strength("Arriba")
 	
-	velocity = direccion * move_speed
+	#velocity = direccion * move_speed
 	
-	if SetEstado() == true || SetDireccion() == true:
-		UpdateAnimacion()
+	#if SetEstado() == true || SetDireccion() == true:
+		#UpdateAnimacion()
 	
 	pass
 
@@ -40,14 +45,14 @@ func SetDireccion() -> bool:
 	sprite.scale.x = -1 if direcciones == Vector2.LEFT else 1
 	return true
 
-func SetEstado() -> bool:
-	var new_estado : String = "idle" if direccion == Vector2.ZERO else "walk"
-	if new_estado == estado:
-		return false
-	estado = new_estado
-	return true
+#func SetEstado() -> bool:
+	#var new_estado : String = "idle" if direccion == Vector2.ZERO else "walk"
+	#if new_estado == estado:
+		#return false
+	#estado = new_estado
+	#return true
 
-func UpdateAnimacion() -> void:
+func UpdateAnimacion( estado : String ) -> void:
 	animation_player.play( estado + "_" + AimDirection() )
 	pass
 

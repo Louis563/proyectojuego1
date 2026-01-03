@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs12jqnvy3bdw"]
+
+[ext_resource type="Script" uid="uid://casohloqk6jfg" path="res://Mapas/bosque.gd" id="1_1ur27"]
+
+[node name="Bosque" type="Node2D"]
+script = ExtResource("1_1ur27")

@@ -1,0 +1,191 @@
+[gd_scene load_steps=14 format=3 uid="uid://pmkcbkjadawy"]
+
+[ext_resource type="Texture2D" uid="uid://cqhwe03r4s6py" path="res://Assets/Texturas/Background animals/chicken/chicken_eyes .png" id="1_cn18v"]
+[ext_resource type="Script" uid="uid://ttes5tv5kg3v" path="res://combate_prueba.gd" id="1_xejlo"]
+[ext_resource type="Texture2D" uid="uid://cdxhhuw46lv1x" path="res://Assets/Texturas/mano.png" id="3_w6jd3"]
+[ext_resource type="PackedScene" uid="uid://cpgajhnst7eg0" path="res://Assets/Jugador/jugador_pelea.tscn" id="4_w6jd3"]
+
+[sub_resource type="Animation" id="Animation_odpbh"]
+resource_name = "Posicion"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nodopollo:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.966667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(30, 30)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nodopollo:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0333333, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nodopollo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.933333),
+"transitions": PackedFloat32Array(1, 1.1487),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.372549, 0.643137, 0.576471, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fybw6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("nodopollo:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("nodopollo:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("nodopollo:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vong4"]
+_data = {
+&"Posicion": SubResource("Animation_odpbh"),
+&"RESET": SubResource("Animation_fybw6")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ae2wd"]
+atlas = ExtResource("1_cn18v")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xejlo"]
+atlas = ExtResource("1_cn18v")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6jd3"]
+atlas = ExtResource("1_cn18v")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sx2kl"]
+atlas = ExtResource("1_cn18v")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_utxum"]
+animations = [{
+"frames": [{
+"duration": 0.01,
+"texture": SubResource("AtlasTexture_ae2wd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xejlo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6jd3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sx2kl")
+}],
+"loop": true,
+"name": &"stand by",
+"speed": 2.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sx2kl"]
+size = Vector2(228.5, 260)
+
+[node name="Combate-prueba" type="Node2D"]
+script = ExtResource("1_xejlo")
+
+[node name="nodopollo" type="Node2D" parent="."]
+
+[node name="Label" type="Label" parent="nodopollo"]
+offset_left = 312.0
+offset_top = -250.0
+offset_right = 404.0
+offset_bottom = -109.0
+theme_override_font_sizes/font_size = 50
+text = "3
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="nodopollo/Label"]
+root_node = NodePath("../../..")
+libraries = {
+&"": SubResource("AnimationLibrary_vong4")
+}
+
+[node name="pollo" type="AnimatedSprite2D" parent="nodopollo"]
+position = Vector2(262, -133)
+scale = Vector2(15.9375, 14.8281)
+sprite_frames = SubResource("SpriteFrames_utxum")
+animation = &"stand by"
+autoplay = "stand by"
+frame_progress = 0.324843
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 106.0
+offset_top = -332.0
+offset_right = 399.0
+offset_bottom = -278.0
+show_percentage = false
+
+[node name="cursor" type="Sprite2D" parent="."]
+position = Vector2(91, -130)
+scale = Vector2(0.15979, 0.162842)
+texture = ExtResource("3_w6jd3")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-594, 96)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(869, -223)
+shape = SubResource("RectangleShape2D_sx2kl")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-28, -85)
+scale = Vector2(15.9375, 14.8281)
+zoom = Vector2(0.5, 0.5)
+
+[node name="nodoplayer" type="Node2D" parent="."]
+
+[node name="Jugador_pelea" parent="nodoplayer" instance=ExtResource("4_w6jd3")]
+position = Vector2(-380, -89)
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

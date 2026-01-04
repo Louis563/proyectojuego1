@@ -1,10 +1,8 @@
-[gd_scene load_steps=15 format=3 uid="uid://drd4a2uk6tfa"]
+[gd_scene load_steps=13 format=3 uid="uid://cpgajhnst7eg0"]
 
-[ext_resource type="Script" uid="uid://y2magp12vdee" path="res://Assets/Jugador/Scrips/jugador.gd" id="1_05kpm"]
-[ext_resource type="Texture2D" uid="uid://bhpa3x06gdx66" path="res://Assets/Jugador/player2.png" id="2_05kpm"]
-[ext_resource type="Script" path="res://Assets/Jugador/Scrips/jugadormaquinaestado.gd" id="3_tgynk"]
-[ext_resource type="Script" path="res://Assets/Jugador/Scrips/estado_idle.gd" id="4_kussy"]
-[ext_resource type="Script" path="res://Assets/Jugador/Scrips/estado_walk.gd" id="5_b3w8r"]
+[ext_resource type="Script" uid="uid://u27scv6o7sc7" path="res://Assets/Jugador/jugador_pelea.gd" id="1_lqjsq"]
+[ext_resource type="Texture2D" uid="uid://bhpa3x06gdx66" path="res://Assets/Jugador/player2.png" id="2_8uy5f"]
+[ext_resource type="PackedScene" uid="uid://bcc2n6joxf2ce" path="res://control.tscn" id="3_lqjsq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_edjgo"]
 radius = 97.0824
@@ -137,15 +135,17 @@ _data = {
 &"walk_up": SubResource("Animation_am4bq")
 }
 
-[node name="Jugador" type="CharacterBody2D"]
-script = ExtResource("1_05kpm")
+[node name="Jugador_pelea" type="CharacterBody2D"]
+script = ExtResource("1_lqjsq")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, -2)
 shape = SubResource("CircleShape2D_edjgo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -13)
-texture = ExtResource("2_05kpm")
+position = Vector2(-5, -21)
+scale = Vector2(7.08871, 5.98438)
+texture = ExtResource("2_8uy5f")
 hframes = 6
 vframes = 4
 
@@ -154,14 +154,15 @@ libraries = {
 &"": SubResource("AnimationLibrary_s5p4d")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+[node name="Control" parent="." instance=ExtResource("3_lqjsq")]
+offset_left = 207.0
+offset_top = 7.0
+offset_right = 207.0
+offset_bottom = 7.0
 
-[node name="MaquinaEstado" type="Node" parent="."]
-script = ExtResource("3_tgynk")
-
-[node name="Idle" type="Node" parent="MaquinaEstado"]
-script = ExtResource("4_kussy")
-
-[node name="Walk" type="Node" parent="MaquinaEstado"]
-script = ExtResource("5_b3w8r")
+[node name="seleccionar" type="Polygon2D" parent="."]
+visible = false
+position = Vector2(-5, -161)
+color = Color(0.231373, 0.545098, 0.796078, 1)
+offset = Vector2(13, 162)
+polygon = PackedVector2Array(-63, -186, -11, -123, 34, -186)

@@ -1,8 +1,8 @@
 [gd_scene load_steps=22 format=3 uid="uid://bh070tjkwugps"]
 
-[ext_resource type="Texture2D" uid="uid://cqhwe03r4s6py" path="res://Background animals/chicken/chicken_eyes .png" id="1_ggf0g"]
-[ext_resource type="Script" uid="uid://yi2eh5lwnwp8" path="res://Animals scenes/chicken.gd" id="1_ybu5p"]
-[ext_resource type="Texture2D" uid="uid://s2mtjtx3p5rm" path="res://Background animals/chicken/chicken_pecking .png" id="2_ybu5p"]
+[ext_resource type="Texture2D" uid="uid://cqhwe03r4s6py" path="res://Assets/Texturas/Background animals/chicken/chicken_eyes .png" id="1_ggf0g"]
+[ext_resource type="Script" uid="uid://yi2eh5lwnwp8" path="res://Assets/Texturas/Animals scenes/chicken.gd" id="1_ybu5p"]
+[ext_resource type="Texture2D" uid="uid://s2mtjtx3p5rm" path="res://Assets/Texturas/Background animals/chicken/chicken_pecking .png" id="2_ybu5p"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6x1i0"]
 atlas = ExtResource("1_ggf0g")

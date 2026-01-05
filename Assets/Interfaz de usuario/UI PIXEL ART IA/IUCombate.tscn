@@ -1,0 +1,57 @@
+[gd_scene load_steps=3 format=3 uid="uid://clmqkhre1h0fq"]
+
+[ext_resource type="Script" uid="uid://dg033qm8kvewj" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/iu_combate.gd" id="1_hhmmf"]
+[ext_resource type="Texture2D" uid="uid://cdxhhuw46lv1x" path="res://Assets/Texturas/mano.png" id="2_c8p38"]
+
+[node name="IuCombate" type="CanvasLayer"]
+script = ExtResource("1_hhmmf")
+
+[node name="ActionMenu" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.15
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="VBoxContainer" type="HBoxContainer" parent="ActionMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -36.0
+offset_right = 325.0
+grow_vertical = 0
+alignment = 1
+
+[node name="attack" type="Button" parent="ActionMenu/VBoxContainer"]
+layout_mode = 2
+text = "Atacar"
+expand_icon = true
+
+[node name="magic" type="Button" parent="ActionMenu/VBoxContainer"]
+layout_mode = 2
+text = "Magia"
+
+[node name="item" type="Button" parent="ActionMenu/VBoxContainer"]
+layout_mode = 2
+text = "Objetos"
+
+[node name="defend" type="Button" parent="ActionMenu/VBoxContainer"]
+layout_mode = 2
+text = "Defender"
+
+[node name="run" type="Button" parent="ActionMenu/VBoxContainer"]
+layout_mode = 2
+text = "Huir"
+
+[node name="EnemySelector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(284, 137)
+scale = Vector2(0.0390625, 0.0439453)
+texture = ExtResource("2_c8p38")
+
+[connection signal="pressed" from="ActionMenu/VBoxContainer/attack" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="ActionMenu/VBoxContainer/magic" to="." method="_on_magic_pressed"]
+[connection signal="pressed" from="ActionMenu/VBoxContainer/item" to="." method="_on_item_pressed"]
+[connection signal="pressed" from="ActionMenu/VBoxContainer/defend" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="ActionMenu/VBoxContainer/run" to="." method="_on_run_pressed"]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://1p8q6o7oy0cx"]
+[gd_scene load_steps=7 format=4 uid="uid://1p8q6o7oy0cx"]
 
 [ext_resource type="Script" uid="uid://dv8qsfh6x1et1" path="res://Mapas/granja.gd" id="1_qdykv"]
 [ext_resource type="TileSet" uid="uid://dr2dvqtqa2gy6" path="res://Mapas/32brownrock.tres" id="2_j6q88"]
 [ext_resource type="Texture2D" uid="uid://uj4x445o6xwp" path="res://Assets/Texturas/Background-animals-tileset/animals-tileset.png" id="3_q45wd"]
+[ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="4_qlhn5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qlhn5"]
 texture = ExtResource("3_q45wd")
@@ -142,3 +143,5 @@ tile_set = ExtResource("2_j6q88")
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AADD//z/AAAHAAEAAADD//3/AAABAAEAAADE//z/AAAIAAEAAADF//z/AAAJAAEAAADG//z/AAAKAAEAAADG//3/AAAKAAIAAADG/wYAAAAHAAMAAADG/wcAAAAHAAEAADDF/wcAAAAIAAEAADDE/wcAAAAJAAEAADDD/wYAAAAKAAIAADDD/wcAAAAKAAEAADDD//7/AAABAAIAAADD////AAABAAMAAADD/wAAAAABAAEAAADD/wEAAAABAAIAAADD/wIAAAABAAMAAADD/wMAAAABAAEAAADD/wQAAAABAAIAAADD/wUAAAABAAMAAADG//7/AAABAAMAAFDI/wUAAAAHAAIAAADH/wUAAAAIAAIAAADG/wUAAAAHAAIAAADL/wUAAAAKAAIAAADK/wUAAAAJAAIAAADJ/wUAAAAIAAIAAADI////AAAJAAEAAADH////AAAIAAEAAADG////AAAHAAEAAADL////AAAIAAEAAADK////AAAHAAEAAADJ////AAAKAAEAAADL/wAAAAAIAAIAAADK/wAAAAAHAAIAAADJ/wAAAAAKAAIAAADI/wAAAAAJAAIAAADH/wAAAAAIAAIAAADG/wAAAAAHAAIAAADG/wEAAAAHAAMAAADH/wEAAAAIAAMAAADI/wEAAAAJAAMAAADJ/wEAAAAKAAMAAADK/wEAAAAHAAMAAADL/wEAAAAIAAMAAADG/wQAAAAHAAEAAADH/wQAAAAIAAEAAADH/wYAAAAIAAMAAADI/wQAAAAHAAEAAADI/wYAAAAHAAMAAADJ/wQAAAAIAAEAAADJ/wYAAAAIAAMAAADK/wQAAAAJAAEAAADK/wYAAAAJAAMAAADL/wQAAAAKAAEAAADL/wYAAAAKAAMAAAA=")
 tile_set = SubResource("TileSet_05aa6")
+
+[node name="Jugador" parent="." instance=ExtResource("4_qlhn5")]

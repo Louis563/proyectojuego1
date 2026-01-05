@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://c32yyji1vo1wi"]
+
+[node name="EnemyGroup" type="Node2D"]
+
+[node name="pos1" type="Marker2D" parent="."]
+position = Vector2(-68, -50)
+
+[node name="pos3" type="Marker2D" parent="."]
+position = Vector2(-26, 63)
+
+[node name="pos4" type="Marker2D" parent="."]
+position = Vector2(89, 117)
+
+[node name="pos2" type="Marker2D" parent="."]
+position = Vector2(116, 16)

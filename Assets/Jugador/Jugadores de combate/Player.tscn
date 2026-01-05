@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://btwgenb6x4wai"]
+
+[ext_resource type="Script" uid="uid://nq8s2t6fanry" path="res://Assets/Jugador/Jugadores de combate/Player.gd" id="1_kjf78"]
+[ext_resource type="Texture2D" uid="uid://bhpa3x06gdx66" path="res://Assets/Jugador/player2.png" id="2_tsvp1"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_kjf78")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-221, -80)
+scale = Vector2(5.53226, 5.3125)
+texture = ExtResource("2_tsvp1")
+hframes = 6
+vframes = 4
+frame = 12

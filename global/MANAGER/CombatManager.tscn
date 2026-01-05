@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://culf11cdnlk4d"]
+
+[ext_resource type="Script" uid="uid://cdhmbawqh0f8g" path="res://global/MANAGER/combat_manager.gd" id="1_wamtr"]
+[ext_resource type="PackedScene" uid="uid://clmqkhre1h0fq" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/IUCombate.tscn" id="3_7hy7q"]
+[ext_resource type="PackedScene" uid="uid://dtut4bqfeu15q" path="res://Mapas/plantillaCombate/PlayerParty.tscn" id="4_rmilo"]
+[ext_resource type="PackedScene" uid="uid://bgexp8vwp4imp" path="res://Mapas/plantillaCombate/PosicionEnemigos.tscn" id="4_ynxug"]
+[ext_resource type="PackedScene" uid="uid://c32yyji1vo1wi" path="res://Mapas/plantillaCombate/EnemyGroup.tscn" id="5_7hy7q"]
+
+[node name="CombatManager" type="Node"]
+script = ExtResource("1_wamtr")
+
+[node name="IuCombate" parent="." instance=ExtResource("3_7hy7q")]
+
+[node name="PosicionEnemigos" parent="." instance=ExtResource("4_ynxug")]
+position = Vector2(581, 115)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(204, 119)
+zoom = Vector2(0.4, 0.4)
+limit_smoothed = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="PlayerParty" parent="." instance=ExtResource("4_rmilo")]
+position = Vector2(105, 123)
+
+[node name="EnemyGroup" parent="." instance=ExtResource("5_7hy7q")]
+position = Vector2(316, 96)

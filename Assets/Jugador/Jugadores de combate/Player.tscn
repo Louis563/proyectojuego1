@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://btwgenb6x4wai"]
+[gd_scene load_steps=4 format=3 uid="uid://btwgenb6x4wai"]
 
 [ext_resource type="Script" uid="uid://nq8s2t6fanry" path="res://Assets/Jugador/Jugadores de combate/Player.gd" id="1_kjf78"]
 [ext_resource type="Texture2D" uid="uid://bhpa3x06gdx66" path="res://Assets/Jugador/player2.png" id="2_tsvp1"]
+[ext_resource type="Texture2D" uid="uid://btfn7vk7ome20" path="res://Assets/Interfaz de usuario/UI blanco y negro/black_and_white_theme/icons/arrow_down.svg" id="3_8h6ly"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_kjf78")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-221, -80)
+position = Vector2(4.57764e-05, -40)
 scale = Vector2(5.53226, 5.3125)
 texture = ExtResource("2_tsvp1")
 hframes = 6
 vframes = 4
 frame = 12
+
+[node name="selector_personaje" type="Sprite2D" parent="."]
+position = Vector2(-2, -160)
+scale = Vector2(4.0625, 3.375)
+texture = ExtResource("3_8h6ly")

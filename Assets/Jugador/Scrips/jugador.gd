@@ -13,7 +13,7 @@ func _ready() -> void:
 	maquina_estado.Inicializar( self )
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	
 	direccion.x = Input.get_action_strength("Derecha") - Input.get_action_strength("Izquierda")
 	direccion.y = Input.get_action_strength("Abajo") - Input.get_action_strength("Arriba")
@@ -25,7 +25,7 @@ func _process(delta: float) -> void:
 	
 	pass
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 func SetDireccion() -> bool:

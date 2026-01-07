@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4l35op4kekt4"]
+
+[ext_resource type="Texture2D" uid="uid://461p6xlpynoq" path="res://enemies/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_avo1s"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_a2s61"]
+radius = 17.0
+
+[node name="Enemyi" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-36, -33)
+texture = ExtResource("1_avo1s")
+hframes = 8
+vframes = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_a2s61")

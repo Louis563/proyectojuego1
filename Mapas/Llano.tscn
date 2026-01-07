@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=4 uid="uid://cm4rs4b758vrj"]
 
-[ext_resource type="Script" uid="uid://dq83sv3pcsigw" path="res://Mapas/llano.gd" id="1_s0e34"]
+[ext_resource type="Script" path="res://Mapas/llano.gd" id="1_s0e34"]
 [ext_resource type="Texture2D" uid="uid://cue6cc2gid8ds" path="res://Assets/Texturas/summer_plains_v1.0_standard/tiles.png" id="2_tk74h"]
 [ext_resource type="TileSet" uid="uid://cm81yr2ox0w4u" path="res://summer.tres" id="3_eivlt"]
 [ext_resource type="Texture2D" uid="uid://biln7snjau36u" path="res://Assets/Texturas/summer_plains_v1.0_standard/assets.png" id="3_tk74h"]

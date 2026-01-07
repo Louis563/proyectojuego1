@@ -20,6 +20,7 @@ func take_damage(amount: int) -> void:
 		die()
 
 # --- Morir ---
-func die() -> void:
+func die():
 	print(nombre, " ha sido derrotado.")
-	queue_free()
+	alive = false
+	hide()   # 👈 se oculta visualmente, pero no se borra

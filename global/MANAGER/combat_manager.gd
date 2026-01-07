@@ -2,14 +2,26 @@ extends Node
 
 var players: Array = []
 var enemies: Array = []
+var turn_order: Array = []
 var current_turn: int = 0
+var enemy_index: int = 0
 
-var selecting: bool = false
-var current_index: int = 0
-var last_selected_index: int = 0
+enum CombatState { MENU, SELECT_ENEMY }
+var state = CombatState.MENU
 
+const PLAYER_SCENES = {
+	"Pedro": preload("res://Assets/Jugador/Jugadores de combate/Pedro.tscn"),
+	"Jose": preload("res://Assets/Jugador/Jugadores de combate/Jose.tscn"),
+	"Firulais": preload("res://Assets/Jugador/Jugadores de combate/Firulais.tscn"),
+	"Ramon": preload("res://Assets/Jugador/Jugadores de combate/Ramon.tscn")
+}
 
-var player_scene = preload("res://Assets/Jugador/Jugadores de combate/Player.tscn")
+var player_positions = [
+	Vector2(100, 100),
+	Vector2(140, 200),
+	Vector2(180, 200),
+	Vector2(220, 200)
+]
 
 const ENEMY_SCENES = [
 	preload("res://Assets/Jugador/Jugadores de combate/Enemigo.tscn")
@@ -18,26 +30,22 @@ const ENEMY_SCENES = [
 func _ready():
 	setup_player_party()
 	spawn_random_enemies()
-	$IuCombate.connect("action_selected", Callable(self, "resolve_action"))
+	build_turn_order()
+
+	$IuCombate.connect("attack_pressed", Callable(self, "on_attack_pressed"))
 	start_turn()
 
 # --- PARTY ---
 func setup_player_party():
 	for child in $PlayerParty.get_children():
-		if child is Node2D and not (child is Marker2D):
+		if child is Node2D:
 			child.queue_free()
+	players.clear()
 
-	var names = ["Warrior", "Mage", "Thief", "Cleric"]
-
-	var markers: Array = []
-	for child in $PlayerParty.get_children():
-		if child is Marker2D:
-			markers.append(child)
-
-	for i in range(min(names.size(), markers.size())):
-		var p = player_scene.instantiate()
-		p.name = names[i]
-		p.position = markers[i].position
+	var names = ["Pedro", "Jose", "Firulais", "Ramon"]
+	for i in range(names.size()):
+		var p = PLAYER_SCENES[names[i]].instantiate()
+		p.position = player_positions[i]
 		$PlayerParty.add_child(p)
 
 	players = $PlayerParty.get_children().filter(func(c): return c is Player)
@@ -49,106 +57,129 @@ func spawn_random_enemies():
 			child.queue_free()
 	enemies.clear()
 
-	var count = randi() % 4 + 1
 	var markers: Array = []
 	for child in $EnemyGroup.get_children():
 		if child is Marker2D:
 			markers.append(child)
 
-	for i in range(min(count, markers.size())):
+	var count = clamp(randi() % 4 + 1, 1, markers.size())
+	for i in range(count):
 		var enemy_scene = ENEMY_SCENES[randi() % ENEMY_SCENES.size()]
 		var e = enemy_scene.instantiate()
 		e.position = markers[i].position
 		$EnemyGroup.add_child(e)
 
-	# Solo enemigos con lógica de combate
 	enemies = $EnemyGroup.get_children().filter(func(c): return c.has_method("take_damage"))
 
-# --- TURNOS ---
+# --- ORDEN DE TURNOS ---
+func build_turn_order():
+	turn_order.clear()
+	turn_order.append_array(players.filter(func(p): return p.alive))
+	turn_order.append_array(enemies.filter(func(e): return e.alive))
+	current_turn = 0
+
+# --- INICIO DE TURNO ---
 func start_turn():
-	if current_turn >= players.size():
-		current_turn = 0
+	if enemies.filter(func(e): return e.alive).is_empty():
+		print("¡Victoria! No quedan enemigos.")
+		return
+	if players.filter(func(p): return p.alive).is_empty():
+		print("Derrota. No quedan jugadores.")
+		return
 
-	# Oculta indicadores de todos los jugadores
-	for p in players:
-		if p.has_node("Selector"):
-			p.get_node("Selector").visible = false
+	if current_turn >= turn_order.size():
+		build_turn_order()
 
-	var active = players[current_turn]
-	if active.alive:
-		if active.has_node("Selector"):
-			active.get_node("Selector").visible = true
-		$IuCombate.show_menu(active)
-	else:
+	for c in turn_order:
+		if c.has_node("Selector"):
+			c.get_node("Selector").visible = false
+
+	var active = turn_order[current_turn]
+	if not active.alive:
 		current_turn += 1
 		start_turn()
+		return
 
-# --- ACCIONES ---
+	if active is Player and active.has_node("Selector"):
+		active.get_node("Selector").visible = true
+
+	if active is Player:
+		$IuCombate.show_menu(active)
+		state = CombatState.MENU
+	else:
+		enemy_action(active)
+
+# --- BOTÓN ATACAR ---
+func on_attack_pressed():
+	if enemies.filter(func(e): return e.alive).is_empty():
+		print("No quedan enemigos. ¡Victoria!")
+		return
+	state = CombatState.SELECT_ENEMY
+	enemy_index = 0
+	update_enemy_selector()
+
+# --- RESOLVER ACCIÓN ---
 func resolve_action(action: String, target: Node):
-	var active = players[current_turn]
+	var active = turn_order[current_turn]
 
-	# Caso especial: atacar sin objetivo → abrir selector
-	if action == "attack" and target == null:
-		start_enemy_selection()
+	if action == "attack":
+		if enemies.filter(func(e): return e.alive).is_empty():
+			print("No quedan enemigos. ¡Victoria!")
+			return
+		if target == null or not target.alive:
+			print("Objetivo inválido.")
+			return
+
+		print(active.nombre, " ataca a ", target.nombre)
+		target.take_damage(active.attack)
+
+		if not target.alive:
+			enemies = enemies.filter(func(e): return e.alive)
+			enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
+
+	current_turn += 1
+	state = CombatState.MENU
+	start_turn()
+
+# --- ACCIÓN DE ENEMIGO ---
+func enemy_action(enemy: Enemy):
+	var alive_players = players.filter(func(p): return p.alive)
+	if alive_players.is_empty():
+		print("Derrota. No quedan jugadores.")
 		return
 
-	match action:
-		"attack":
-			if target and target.has_method("take_damage"):
-				target.take_damage(active.attack)
-		"magic":
-			if active.mp >= 5 and target and target.has_method("take_damage"):
-				target.take_damage(active.attack * 2)
-				active.mp -= 5
-		"item":
-			active.hp += 20
-		"defend":
-			active.defense += 5
-		"run":
-			print("Intentando huir...")
-
-	# Filtra enemigos vivos
-	enemies = enemies.filter(func(e): return is_instance_valid(e) and e.alive)
-
-	if enemies.is_empty():
-		print("¡Victoria!")
-		return
+	var target = alive_players[randi() % alive_players.size()]
+	print(enemy.nombre, " ataca a ", target.nombre)
+	target.take_damage(enemy.attack)
 
 	current_turn += 1
 	start_turn()
 
-# --- SELECCIÓN DE ENEMIGOS ---
-func start_enemy_selection():
-	if enemies.is_empty():
+# --- SELECTOR GLOBAL DE ENEMIGOS ---
+func update_enemy_selector():
+	var alive_enemies = enemies.filter(func(e): return e.alive)
+	if alive_enemies.is_empty():
+		$EnemySelector.visible = false
 		return
-	selecting = true
-	# 👇 Usa el índice anterior si sigue siendo válido
-	if last_selected_index < enemies.size():
-		current_index = last_selected_index
-	else:
-		current_index = 0
+
+	enemy_index = clamp(enemy_index, 0, alive_enemies.size() - 1)
+	var target = alive_enemies[enemy_index]
 	$EnemySelector.visible = true
-	update_selector()
+	$EnemySelector.global_position = target.global_position + Vector2(-32, 0)
 
+# --- INPUTS ---
+func _process(delta):
+	if state == CombatState.SELECT_ENEMY:
+		var alive_enemies = enemies.filter(func(e): return e.alive)
+		if alive_enemies.is_empty():
+			return
 
-func _process(_delta):
-	if selecting:
-		if Input.is_action_just_pressed("ui_down"):
-			current_index = min(current_index + 1, enemies.size() - 1)
-			update_selector()
-		elif Input.is_action_just_pressed("ui_up"):
-			current_index = max(current_index - 1, 0)
-			update_selector()
+		if Input.is_action_just_pressed("arriba combate"):
+			enemy_index = (enemy_index + 1) % alive_enemies.size()
+			update_enemy_selector()
+		elif Input.is_action_just_pressed("abajo combate"):
+			enemy_index = (enemy_index - 1 + alive_enemies.size()) % alive_enemies.size()
+			update_enemy_selector()
 		elif Input.is_action_just_pressed("ui_accept"):
-			var target = enemies[current_index]
-			last_selected_index = current_index   # 👈 guarda el último enemigo elegido
-			selecting = false
-			$EnemySelector.visible = false
-			resolve_action("attack", target)
-
-
-func update_selector():
-	if enemies.is_empty():
-		return
-	var enemy: Node2D = enemies[current_index]
-	$EnemySelector.global_position = enemy.global_position + Vector2(-32, 0)
+			var target_enemy = alive_enemies[enemy_index]
+			resolve_action("attack", target_enemy)

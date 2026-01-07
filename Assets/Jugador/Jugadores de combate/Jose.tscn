@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://kpkg7tcvy8g7"]
+
+[ext_resource type="Texture2D" uid="uid://cyfvi4qn4fclp" path="res://Assets/Texturas/Jugadores/Huesitos.png" id="1_rg041"]
+[ext_resource type="Script" uid="uid://nq8s2t6fanry" path="res://Assets/Jugador/Jugadores de combate/Player.gd" id="2_bdlg5"]
+[ext_resource type="Texture2D" uid="uid://btfn7vk7ome20" path="res://Assets/Interfaz de usuario/UI blanco y negro/black_and_white_theme/icons/arrow_down.svg" id="3_bdlg5"]
+
+[node name="Jose" type="Node2D"]
+script = ExtResource("2_bdlg5")
+
+[node name="jose" type="Sprite2D" parent="."]
+position = Vector2(-11, -76)
+scale = Vector2(0.800781, 0.855469)
+texture = ExtResource("1_rg041")
+hframes = 5
+vframes = 4
+frame = 11
+
+[node name="Selector" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-2, -160)
+scale = Vector2(4.0625, 3.375)
+texture = ExtResource("3_bdlg5")

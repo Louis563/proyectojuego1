@@ -1,15 +1,3 @@
 [gd_scene format=3 uid="uid://dtut4bqfeu15q"]
 
 [node name="PlayerParty" type="Node2D"]
-
-[node name="pos1" type="Marker2D" parent="."]
-position = Vector2(26, -71)
-
-[node name="pos2" type="Marker2D" parent="."]
-position = Vector2(-76, -36)
-
-[node name="pos3" type="Marker2D" parent="."]
-position = Vector2(21, 22)
-
-[node name="pos4" type="Marker2D" parent="."]
-position = Vector2(-75, 58)

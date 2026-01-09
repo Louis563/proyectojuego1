@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://culf11cdnlk4d"]
 
-[ext_resource type="Script" uid="uid://cdhmbawqh0f8g" path="res://global/MANAGER/GestorCombate.gd" id="1_lwkbu"]
+[ext_resource type="Script" uid="uid://bxiwv8ivviofu" path="res://global/MANAGER/combat_manager.gd" id="1_lwkbu"]
 [ext_resource type="PackedScene" uid="uid://clmqkhre1h0fq" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/IUCombate.tscn" id="2_5dstg"]
 [ext_resource type="PackedScene" uid="uid://bgexp8vwp4imp" path="res://Mapas/plantillaCombate/PosicionEnemigos.tscn" id="3_osjme"]
 [ext_resource type="PackedScene" uid="uid://dtut4bqfeu15q" path="res://Mapas/plantillaCombate/PlayerParty.tscn" id="4_yktg8"]

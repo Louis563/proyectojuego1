@@ -19,10 +19,10 @@ const PLAYER_SCENES = {
 }
 
 var player_positions = [
-	Vector2(100, -100),
-	Vector2(-40, -40),
-	Vector2(-40, 120),
-	Vector2(100, 240)
+	Vector2(100, -40),
+	Vector2(0, -40),
+	Vector2(0, 80),
+	Vector2(100, 120)
 ]
 
 const ENEMY_SCENES = [

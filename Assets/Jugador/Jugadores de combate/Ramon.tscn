@@ -8,8 +8,8 @@
 script = ExtResource("1_hb8g2")
 
 [node name="Ramon" type="Sprite2D" parent="."]
-position = Vector2(-13, -45)
-scale = Vector2(0.531376, 0.481425)
+position = Vector2(-5, -17)
+scale = Vector2(0.273501, 0.246578)
 texture = ExtResource("2_hb8g2")
 hframes = 6
 vframes = 3

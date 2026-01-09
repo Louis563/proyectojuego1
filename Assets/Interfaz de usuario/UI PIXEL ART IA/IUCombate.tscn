@@ -39,10 +39,6 @@ text = "Objetos"
 layout_mode = 2
 text = "Defender"
 
-[node name="run" type="Button" parent="ActionMenu/VBoxContainer"]
-layout_mode = 2
-text = "Huir"
-
 [node name="MagicMenu" type="PopupMenu" parent="."]
 
 [node name="ItemMenu" type="PopupMenu" parent="."]
@@ -52,4 +48,3 @@ auto_translate_mode = 1
 [connection signal="pressed" from="ActionMenu/VBoxContainer/magic" to="." method="_on_magic_pressed"]
 [connection signal="pressed" from="ActionMenu/VBoxContainer/item" to="." method="_on_item_pressed"]
 [connection signal="pressed" from="ActionMenu/VBoxContainer/defend" to="." method="_on_defend_pressed"]
-[connection signal="pressed" from="ActionMenu/VBoxContainer/run" to="." method="_on_run_pressed"]

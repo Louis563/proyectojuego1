@@ -8,8 +8,8 @@
 script = ExtResource("1_w4m41")
 
 [node name="firulais" type="Sprite2D" parent="."]
-position = Vector2(0.999954, -51)
-scale = Vector2(5.53226, 5.3125)
+position = Vector2(1, -8)
+scale = Vector2(3.18548, 2.78125)
 texture = ExtResource("1_4bq04")
 hframes = 6
 vframes = 4

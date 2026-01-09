@@ -1,47 +1,68 @@
 extends CanvasLayer
 
-signal action_selected(action: String, target: Node)
-signal attack_pressed 
+# --- Señales en español ---
+signal atacar_presionado
+signal defender_presionado
+signal magia_presionada
+signal objeto_presionado
+signal magia_seleccionada(spell_name)
+signal objeto_seleccionado(item_name)
 
-var current_action: String = ""
-var current_index: int = 0
-var enemies: Array = []
-var selecting: bool = false
+@onready var magic_menu = $MagicMenu
+@onready var item_menu = $ItemMenu
 
-func show_menu(_player):
-	$ActionMenu.visible = true
-	selecting = false
-	$ActionMenu/VBoxContainer/attack.connect("pressed", Callable(self, "_on_boton_atacar_pressed"))
+func _ready():
+	# Conexión de botones principales
+	$ActionMenu/VBoxContainer/attack.connect("pressed", Callable(self, "_on_bt_atacar_pressed"))
+	$ActionMenu/VBoxContainer/defend.connect("pressed", Callable(self, "_on_bt_defender_pressed"))
+	$ActionMenu/VBoxContainer/magic.connect("pressed", Callable(self, "_on_bt_magia_pressed"))
+	$ActionMenu/VBoxContainer/item.connect("pressed", Callable(self, "_on_bt_items_pressed"))
 
-func _on_Attack_pressed():
-	emit_signal("attack_pressed")
+	# Conexión de submenús
+	magic_menu.connect("id_pressed", Callable(self, "_on_magic_selected"))
+	item_menu.connect("id_pressed", Callable(self, "_on_item_selected"))
+
+# --- Botones principales ---
+func _on_bt_atacar_pressed():
+	emit_signal("atacar_presionado")
+
+func _on_bt_defender_pressed():
+	emit_signal("defender_presionado")
+
+func _on_bt_magia_pressed():
+	emit_signal("magia_presionada")
+	# Ejemplo: mostrar lista de magias
+	show_magic_menu(["Fuego", "Hielo", "Rayo"])
+
+func _on_bt_items_pressed():
+	emit_signal("objeto_presionado")
+	# Ejemplo: mostrar lista de items
+	show_item_menu(["Poción", "Éter", "Antídoto"])
+
+# --- Submenús ---
+
+func show_menu(active_player):
+		# Aquí puedes personalizar el menú según el jugador activo
+		visible = true
+		print("Turno de ", active_player.nombre, ". Menú mostrado.")
 
 
-func start_enemy_selection(_action: String):
-	if enemies.is_empty():
-		return
-	selecting = true
-	current_index = 0
-	$EnemySelector.visible = true
-	update_selector()
+func show_magic_menu(spells: Array):
+	magic_menu.clear()
+	for spell in spells:
+		magic_menu.add_item(spell)
+	magic_menu.popup_centered()
 
+func show_item_menu(items: Array):
+	item_menu.clear()
+	for item in items:
+		item_menu.add_item(item)
+	item_menu.popup_centered()
 
-func _process(_delta):
-	if selecting:
-		if Input.is_action_just_pressed("ui_down"):
-			current_index = min(current_index + 1, enemies.size() - 1)
-			update_selector()
-		elif Input.is_action_just_pressed("ui_up"):
-			current_index = max(current_index - 1, 0)
-			update_selector()
-		elif Input.is_action_just_pressed("ui_accept"):
-			var _target = enemies[current_index]
-			selecting = false
-			$EnemySelector.visible = false
+func _on_magic_selected(id):
+	var spell = magic_menu.get_item_text(id)
+	emit_signal("magia_seleccionada", spell)
 
-
-func update_selector():
-	if enemies.is_empty():
-		return
-	var enemy: Node2D = enemies[current_index]
-	$EnemySelector.global_position = enemy.global_position + Vector2(-32, 0)
+func _on_item_selected(id):
+	var item = item_menu.get_item_text(id)
+	emit_signal("objeto_seleccionado", item)

@@ -1,14 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://2alg2s0jud3v"]
 
 [ext_resource type="Texture2D" uid="uid://bhpa3x06gdx66" path="res://Assets/Jugador/player2.png" id="1_4bq04"]
+[ext_resource type="Script" uid="uid://0wb7nbe3o1kx" path="res://Assets/Jugador/Jugadores de combate/firulais.gd" id="1_w4m41"]
 [ext_resource type="Texture2D" uid="uid://btfn7vk7ome20" path="res://Assets/Interfaz de usuario/UI blanco y negro/black_and_white_theme/icons/arrow_down.svg" id="2_4bq04"]
 
-[sub_resource type="GDScript" id="GDScript_0mkb3"]
-script/source = "extends Node2D
-"
-
 [node name="Firulais" type="Node2D"]
-script = SubResource("GDScript_0mkb3")
+script = ExtResource("1_w4m41")
 
 [node name="firulais" type="Sprite2D" parent="."]
 position = Vector2(0.999954, -51)

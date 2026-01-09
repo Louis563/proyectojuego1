@@ -43,6 +43,11 @@ text = "Defender"
 layout_mode = 2
 text = "Huir"
 
+[node name="MagicMenu" type="PopupMenu" parent="."]
+
+[node name="ItemMenu" type="PopupMenu" parent="."]
+auto_translate_mode = 1
+
 [connection signal="pressed" from="ActionMenu/VBoxContainer/attack" to="." method="_on_Attack_pressed"]
 [connection signal="pressed" from="ActionMenu/VBoxContainer/magic" to="." method="_on_magic_pressed"]
 [connection signal="pressed" from="ActionMenu/VBoxContainer/item" to="." method="_on_item_pressed"]

@@ -1,0 +1,34 @@
+[gd_scene load_steps=7 format=3 uid="uid://culf11cdnlk4d"]
+
+[ext_resource type="Script" uid="uid://bxiwv8ivviofu" path="res://global/MANAGER/combat_manager.gd" id="1_lwkbu"]
+[ext_resource type="PackedScene" uid="uid://clmqkhre1h0fq" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/IUCombate.tscn" id="2_5dstg"]
+[ext_resource type="PackedScene" uid="uid://b3ynkoyp5w5n7" path="res://Mapas/plantillaCombate/PosicionEnemigos.tscn" id="3_osjme"]
+[ext_resource type="PackedScene" uid="uid://dtut4bqfeu15q" path="res://Mapas/plantillaCombate/PlayerParty.tscn" id="4_yktg8"]
+[ext_resource type="PackedScene" uid="uid://c32yyji1vo1wi" path="res://Mapas/plantillaCombate/EnemyGroup.tscn" id="5_r5kj3"]
+[ext_resource type="Texture2D" uid="uid://cdxhhuw46lv1x" path="res://Assets/Texturas/mano.png" id="6_xs7id"]
+
+[node name="GestorCombate" type="Node"]
+script = ExtResource("1_lwkbu")
+
+[node name="IuCombate" parent="." instance=ExtResource("2_5dstg")]
+
+[node name="PosicionEnemigos" parent="." instance=ExtResource("3_osjme")]
+position = Vector2(360, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-2, 0)
+zoom = Vector2(0.7, 0.7)
+limit_smoothed = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+
+[node name="PlayerParty" parent="." instance=ExtResource("4_yktg8")]
+position = Vector2(-248, 1)
+
+[node name="EnemyGroup" parent="." instance=ExtResource("5_r5kj3")]
+position = Vector2(172, 2)
+
+[node name="EnemySelector" type="Sprite2D" parent="."]
+position = Vector2(53, 0)
+scale = Vector2(0.085, 0.09)
+texture = ExtResource("6_xs7id")

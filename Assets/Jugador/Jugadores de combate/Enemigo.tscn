@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://boecpn5ammgpv"]
+
+[ext_resource type="Script" uid="uid://dekxqlphub15p" path="res://Assets/Jugador/Jugadores de combate/Enemigo.gd" id="1_8fhn2"]
+[ext_resource type="Texture2D" uid="uid://s2mtjtx3p5rm" path="res://Assets/Texturas/Background animals/chicken/chicken_pecking .png" id="2_8fhn2"]
+
+[node name="Pollo" type="Node2D"]
+script = ExtResource("1_8fhn2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -6)
+scale = Vector2(3, 2.84375)
+texture = ExtResource("2_8fhn2")
+hframes = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]

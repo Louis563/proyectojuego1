@@ -1,0 +1,3 @@
+[gd_scene load_steps=0 format=3 uid="uid://dtut4bqfeu15q"]
+
+[node name="PlayerParty" type="Node2D"]

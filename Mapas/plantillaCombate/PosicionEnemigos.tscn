@@ -1,0 +1,3 @@
+[gd_scene load_steps=0 format=3 uid="uid://b3ynkoyp5w5n7"]
+
+[node name="PosicionEnemigos" type="Node2D"]

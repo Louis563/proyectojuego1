@@ -1,10 +1,14 @@
 extends Node
 
+
 var players: Array = []
 var enemies: Array = []
 var turn_order: Array = []
 var current_turn: int = 0
 var enemy_index: int = 0
+
+# --- Items Manager ---
+var items_manager: Node = null
 
 enum CombatState { MENU, SELECT_ENEMY }
 var state = CombatState.MENU
@@ -34,14 +38,29 @@ func _ready():
 	spawn_random_enemies()
 	build_turn_order()
 
+	# Instanciar el gestor de objetos si no existe
+	if not items_manager:
+		items_manager = preload("res://global/MANAGER/items_manager.gd").new()
+		add_child(items_manager)
+		# Demo: añadir algunos objetos al inventario
+		items_manager.add_item("Poción", 3)
+		items_manager.add_item("Éter", 2)
+		items_manager.add_item("Antídoto", 1)
+		items_manager.add_item("Revivir", 1)
+
 	$IuCombate.connect("atacar_presionado", Callable(self, "on_attack_pressed"))
 	$IuCombate.connect("defender_presionado", Callable(self, "on_defend_pressed"))
 	$IuCombate.connect("magia_presionada", Callable(self, "on_magic_pressed"))
 	$IuCombate.connect("objeto_presionado", Callable(self, "on_item_pressed"))
-	
+
 	$IuCombate.connect("magia_seleccionada", Callable(self, "resolve_magic"))
+	$IuCombate.connect("objeto_seleccionado", Callable(self, "resolve_item"))
 
 	start_turn()
+func on_item_pressed():
+	# Mostrar lista real de objetos con cantidades
+	var item_list = items_manager.get_item_list()
+	$IuCombate.show_item_menu(item_list)
 
 # --- PARTY ---
 func setup_player_party():
@@ -141,19 +160,20 @@ func resolve_magic(spell_name: String):
 
 
 func resolve_item(item_name: String):
-		var active = turn_order[current_turn]
-		if item_name == "Poción":
-			active.hp += 20
-			print(active.nombre, " usa ", item_name, " y recupera 20 HP.")
-		elif item_name == "Éter":
-			active.mp += 10
-			print(active.nombre, " usa ", item_name, " y recupera 10 MP.")
-		end_turn()
+	var active = turn_order[current_turn]
+	# Si el nombre viene con cantidad ("Poción x2"), extraer solo el nombre
+	var real_name = item_name.split(" x")[0]
+	var ok = items_manager.use_item(real_name, active)
+	if ok:
+		print(active.nombre, " usa ", real_name, ". Efecto aplicado.")
+	else:
+		print("No se pudo usar el objeto: ", real_name)
+	end_turn()
 
 func end_turn():
-		current_turn+=1
-		state = CombatState.MENU
-		start_turn()
+	current_turn+=1
+	state = CombatState.MENU
+	start_turn()
 
 # --- BOTÓN ATACAR ---
 func on_attack_pressed():

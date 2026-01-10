@@ -55,6 +55,7 @@ func show_magic_menu(spells: Array):
 
 func show_item_menu(items: Array):
 	item_menu.clear()
+	# items debe ser un array de strings tipo "Poción x3"
 	for item in items:
 		item_menu.add_item(item)
 	item_menu.popup_centered()

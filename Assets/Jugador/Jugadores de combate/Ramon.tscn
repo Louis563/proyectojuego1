@@ -16,6 +16,6 @@ vframes = 3
 
 [node name="Selector" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-2, -160)
+position = Vector2(-2, -84)
 scale = Vector2(4.0625, 3.375)
 texture = ExtResource("3_hb8g2")

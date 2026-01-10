@@ -2,9 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bxiwv8ivviofu" path="res://global/MANAGER/combat_manager.gd" id="1_lwkbu"]
 [ext_resource type="PackedScene" uid="uid://clmqkhre1h0fq" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/IUCombate.tscn" id="2_5dstg"]
-[ext_resource type="PackedScene" path="res://Mapas/plantillaCombate/PosicionEnemigos.tscn" id="3_osjme"]
-[ext_resource type="PackedScene" path="res://Mapas/plantillaCombate/PlayerParty.tscn" id="4_yktg8"]
-[ext_resource type="PackedScene" path="res://Mapas/plantillaCombate/EnemyGroup.tscn" id="5_r5kj3"]
+[ext_resource type="PackedScene" uid="uid://b3ynkoyp5w5n7" path="res://Mapas/plantillaCombate/PosicionEnemigos.tscn" id="3_osjme"]
+[ext_resource type="PackedScene" uid="uid://dtut4bqfeu15q" path="res://Mapas/plantillaCombate/PlayerParty.tscn" id="4_yktg8"]
+[ext_resource type="PackedScene" uid="uid://c32yyji1vo1wi" path="res://Mapas/plantillaCombate/EnemyGroup.tscn" id="5_r5kj3"]
 [ext_resource type="Texture2D" uid="uid://bxj1s7bitaen" path="res://Assets/Texturas/mano.png" id="6_xs7id"]
 
 [node name="GestorCombate" type="Node"]

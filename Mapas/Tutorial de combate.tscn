@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=4 uid="uid://fvhe5ujfej8q"]
+[gd_scene load_steps=4 format=4 uid="uid://cuxrnd2wv1phy"]
 
 [ext_resource type="TileSet" uid="uid://dr2dvqtqa2gy6" path="res://Mapas/32brownrock.tres" id="1_xfyey"]
 [ext_resource type="TileSet" uid="uid://bcb11gyttew0v" path="res://Mapas/32brownrock physics.tres" id="2_yayi0"]

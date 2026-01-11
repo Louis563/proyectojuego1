@@ -10,6 +10,7 @@ var direcciones : Vector2 = Vector2.DOWN
 @onready var maquina_estado: JugadorMaquinaEstado = $MaquinaEstado
 
 func _ready() -> void:
+	PlayerManager.jugador = self
 	maquina_estado.Inicializar( self )
 	pass
 

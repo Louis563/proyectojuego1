@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=4 uid="uid://cs12jqnvy3bdw"]
 
 [ext_resource type="Script" path="res://Mapas/bosque.gd" id="1_1ur27"]
-[ext_resource type="TileSet" uid="uid://d2ok77p62pnm2" path="res://Mapas/32brownrock physics.tres" id="2_57hs6"]
+[ext_resource type="TileSet" uid="uid://bcb11gyttew0v" path="res://Mapas/32brownrock physics.tres" id="2_57hs6"]
 
 [node name="Bosque" type="Node2D"]
 script = ExtResource("1_1ur27")

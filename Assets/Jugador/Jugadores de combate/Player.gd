@@ -12,7 +12,7 @@ var attack: int = 10
 var defense: int = 5
 var speed: int = 10
 var level: int = 1
-var exp: int = 0
+var exp_points: int = 0
 var alive: bool = true
 
 # --- Métodos de utilidad para objetos ---
@@ -30,7 +30,7 @@ func cure_status():
 func revive():
 	if not alive:
 		alive = true
-		hp = int(max_hp / 2)
+		hp = int(floor(max_hp / 2))
 		print(nombre, " ha sido revivido con ", hp, " HP.")
 		show()
 

@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4l35op4kekt4"]
+[gd_scene load_steps=13 format=3 uid="uid://c4l35op4kekt4"]
 
 [ext_resource type="Texture2D" uid="uid://461p6xlpynoq" path="res://enemies/Bringer-Of-Death/SpriteSheet/Bringer-of-Death-SpritSheet.png" id="1_avo1s"]
 [ext_resource type="Script" uid="uid://45ptmsgswxuo" path="res://enemies/scripts/enemy_state_machine.gd" id="2_a2s61"]
 [ext_resource type="Script" uid="uid://dn5p8eu08hljc" path="res://enemies/scripts/states/enemy_state_idle.gd" id="3_ygrjj"]
 [ext_resource type="Script" uid="uid://cea1dmvrw5w75" path="res://enemies/scripts/states/enemy_state_wander.gd" id="4_xdell"]
+[ext_resource type="Script" uid="uid://b2wr4i4hsb6m6" path="res://enemies/scripts/states/enemy_state_follow.gd" id="5_follow"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_avo1s"]
 radius = 11.0
@@ -179,3 +180,6 @@ after_idle_state = NodePath("../Wander")
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_xdell")
 next_state = NodePath("../Idle")
+
+[node name="Follow" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("5_follow")

@@ -178,4 +178,4 @@ after_idle_state = NodePath("../Wander")
 
 [node name="Wander" type="Node" parent="EnemyStateMachine" node_paths=PackedStringArray("next_state")]
 script = ExtResource("4_xdell")
-next_state = NodePath(".")
+next_state = NodePath("../Idle")

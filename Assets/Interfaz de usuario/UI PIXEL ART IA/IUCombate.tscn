@@ -54,9 +54,11 @@ theme_override_styles/normal = ExtResource("3_x4406")
 text = "Defender"
 
 [node name="MagicMenu" type="PopupMenu" parent="."]
+theme_override_fonts/font = ExtResource("2_c8p38")
 
 [node name="ItemMenu" type="PopupMenu" parent="."]
 auto_translate_mode = 1
+theme_override_fonts/font = ExtResource("2_c8p38")
 
 [connection signal="pressed" from="ActionMenu/VBoxContainer/attack" to="." method="_on_Attack_pressed"]
 [connection signal="pressed" from="ActionMenu/VBoxContainer/magic" to="." method="_on_magic_pressed"]

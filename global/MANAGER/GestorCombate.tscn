@@ -13,7 +13,7 @@ script = ExtResource("1_lwkbu")
 [node name="IuCombate" parent="." instance=ExtResource("2_5dstg")]
 
 [node name="PosicionEnemigos" parent="." instance=ExtResource("3_osjme")]
-position = Vector2(360, 1)
+position = Vector2(181, -108)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(-2, 0)

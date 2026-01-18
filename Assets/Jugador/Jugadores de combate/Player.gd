@@ -4,8 +4,8 @@ class_name Player
 
 # --- Stats principales ---
 var nombre: String = "Jugador"
-var max_hp: int = 100
-var hp: int = 100
+var max_hp: float = 100
+var hp: float = 100
 var max_mp: int = 20
 var mp: int = 20
 var attack: int = 10
@@ -30,7 +30,7 @@ func cure_status():
 func revive():
 	if not alive:
 		alive = true
-		hp = int(floor(max_hp / 2))
+		hp = floor(max_hp / 2)
 		print(nombre, " ha sido revivido con ", hp, " HP.")
 		show()
 

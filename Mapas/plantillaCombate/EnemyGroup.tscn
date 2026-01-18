@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://c32yyji1vo1wi"]
+[gd_scene load_steps=2 format=3 uid="uid://c32yyji1vo1wi"]
+
+[ext_resource type="PackedScene" uid="uid://def5pm0jewlng" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Indicador_de_daño.tscn" id="1_c6oi7"]
 
 [node name="EnemyGroup" type="Node2D"]
 
@@ -13,3 +15,6 @@ position = Vector2(56, 117)
 
 [node name="pos2" type="Marker2D" parent="."]
 position = Vector2(82, 16)
+
+[node name="IndicadorDeDaño" parent="." instance=ExtResource("1_c6oi7")]
+position = Vector2(10, 10)

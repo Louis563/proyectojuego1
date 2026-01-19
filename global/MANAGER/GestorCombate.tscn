@@ -29,6 +29,7 @@ position = Vector2(-248, 1)
 position = Vector2(172, 2)
 
 [node name="EnemySelector" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(53, 0)
 scale = Vector2(0.085, 0.09)
 texture = ExtResource("6_xs7id")

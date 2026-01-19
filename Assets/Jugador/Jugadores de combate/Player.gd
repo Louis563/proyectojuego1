@@ -2,6 +2,8 @@ extends Node2D
 class_name Player
 
 
+const DAMAGE_INDICATOR = preload("res://Assets/Interfaz de usuario/UI PIXEL ART IA/Indicador_de_daño.tscn")
+
 # --- Stats principales ---
 var nombre: String = "Jugador"
 var max_hp: float = 100
@@ -35,12 +37,21 @@ func revive():
 		show()
 
 func take_damage(amount: int):
-	var damage = max(amount - defense, 0)
-	hp -= damage
-	print(nombre, " recibe ", damage, " de daño. HP restante: ", hp)
-	if hp <= 0 and alive:
-		alive = false
-		die()
+		var damage = max(amount - defense, 0)
+		hp -= damage
+		mostrar_daño_recibido(damage, Color.YELLOW)
+		print(nombre, " recibe ", damage, " de daño. HP restante: ", hp)
+		if hp <= 0 and alive:
+			alive = false
+			die()
+
+func mostrar_daño_recibido(valor: int, color: Color) -> void:
+		var indicador = DAMAGE_INDICATOR.instantiate()
+		add_child(indicador)
+		indicador.position = Vector2(0, -20)
+		indicador.mostrar_daño(valor, color)
+
+	
 
 func die():
 	print(nombre, " ha sido derrotado.")

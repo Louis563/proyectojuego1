@@ -5,16 +5,15 @@
 [node name="EnemyGroup" type="Node2D"]
 
 [node name="pos1" type="Marker2D" parent="."]
-position = Vector2(-65, -10)
+position = Vector2(-60, -20)
 
 [node name="pos3" type="Marker2D" parent="."]
-position = Vector2(-26, 63)
+position = Vector2(-40, 55)
 
 [node name="pos4" type="Marker2D" parent="."]
-position = Vector2(56, 117)
+position = Vector2(40, 85)
 
 [node name="pos2" type="Marker2D" parent="."]
-position = Vector2(82, 16)
+position = Vector2(60, 8)
 
 [node name="IndicadorDeDaño" parent="." instance=ExtResource("1_c6oi7")]
-position = Vector2(10, 10)

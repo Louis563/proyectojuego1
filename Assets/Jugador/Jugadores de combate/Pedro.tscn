@@ -8,8 +8,8 @@
 script = ExtResource("1_0tdu7")
 
 [node name="Pedro" type="Sprite2D" parent="."]
-position = Vector2(2, -17)
-scale = Vector2(2.21774, 2.03125)
+position = Vector2(6.45313, -36)
+scale = Vector2(3.06754, 2.69531)
 texture = ExtResource("2_lgcbk")
 hframes = 6
 vframes = 4
@@ -17,6 +17,6 @@ frame = 12
 
 [node name="Selector" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-2, -72)
+position = Vector2(3, -89)
 scale = Vector2(4.0625, 3.375)
 texture = ExtResource("5_34ega")

@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" uid="uid://dg033qm8kvewj" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/iu_combate.gd" id="1_hhmmf"]
 [ext_resource type="FontFile" uid="uid://caq3m7r3h2bvo" path="res://Fuentes/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="2_c8p38"]
-[ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/BASEBOTONES.tres" id="3_x4406"]
-[ext_resource type="StyleBox" uid="uid://djx7mkom10md" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/BASEBOTONES-PRESIONADO2.tres" id="4_iwh6o"]
-[ext_resource type="StyleBox" uid="uid://drhftypy2uqf3" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/BASEBOTONES-HOVER.tres" id="5_iwh6o"]
+[ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES.tres" id="3_x4406"]
+[ext_resource type="StyleBox" uid="uid://djx7mkom10md" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-PRESIONADO2.tres" id="4_iwh6o"]
+[ext_resource type="StyleBox" uid="uid://drhftypy2uqf3" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-HOVER.tres" id="5_iwh6o"]
 [ext_resource type="Theme" uid="uid://bdqasctlp7qkp" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Tema-popup.tres" id="6_f242h"]
-[ext_resource type="FontFile" uid="uid://b7c276r2vnqyd" path="res://Fuentes/Pixelify_Sans/static/PixelifySans-Medium.ttf" id="7_4ar2p"]
-[ext_resource type="FontFile" uid="uid://dfl5ia8hrw0hf" path="res://Fuentes/Pixelify_Sans/static/PixelifySans-Regular.ttf" id="7_mquno"]
+[ext_resource type="FontFile" uid="uid://si1i2i4hk3lj" path="res://Fuentes/PixelatedEleganceRegular-ovyAA.ttf" id="7_4ar2p"]
+[ext_resource type="FontFile" uid="uid://crrlrwu8mjld" path="res://Fuentes/StepalangeShort-p7GZd.otf" id="8_4ar2p"]
 
 [sub_resource type="Theme" id="Theme_iwh6o"]
 
@@ -16,7 +16,7 @@ script = ExtResource("1_hhmmf")
 
 [node name="ActionMenu" type="Control" parent="."]
 layout_mode = 3
-anchor_left = 0.17
+anchor_left = 0.12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -35,7 +35,7 @@ alignment = 1
 layout_mode = 2
 theme = SubResource("Theme_iwh6o")
 theme_override_fonts/font = ExtResource("2_c8p38")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 18
 theme_override_styles/hover = ExtResource("5_iwh6o")
 theme_override_styles/pressed = ExtResource("4_iwh6o")
 theme_override_styles/normal = ExtResource("3_x4406")
@@ -45,7 +45,7 @@ expand_icon = true
 [node name="magic" type="Button" parent="ActionMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c8p38")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 19
 theme_override_styles/hover = ExtResource("5_iwh6o")
 theme_override_styles/pressed = ExtResource("4_iwh6o")
 theme_override_styles/normal = ExtResource("3_x4406")
@@ -54,7 +54,7 @@ text = "Magia"
 [node name="item" type="Button" parent="ActionMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c8p38")
-theme_override_font_sizes/font_size = 17
+theme_override_font_sizes/font_size = 18
 theme_override_styles/hover_pressed_mirrored = ExtResource("4_iwh6o")
 theme_override_styles/hover = ExtResource("5_iwh6o")
 theme_override_styles/pressed = ExtResource("4_iwh6o")
@@ -64,7 +64,7 @@ text = "Objetos"
 [node name="defend" type="Button" parent="ActionMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_c8p38")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 18
 theme_override_styles/hover_pressed = ExtResource("4_iwh6o")
 theme_override_styles/hover = ExtResource("5_iwh6o")
 theme_override_styles/pressed = ExtResource("4_iwh6o")
@@ -74,11 +74,13 @@ text = "Defender"
 [node name="MagicMenu" type="PopupMenu" parent="."]
 theme = ExtResource("6_f242h")
 theme_override_fonts/font = ExtResource("7_4ar2p")
+theme_override_font_sizes/font_size = 17
 
 [node name="ItemMenu" type="PopupMenu" parent="."]
 auto_translate_mode = 1
 theme = ExtResource("6_f242h")
-theme_override_fonts/font = ExtResource("7_mquno")
+theme_override_fonts/font = ExtResource("8_4ar2p")
+theme_override_font_sizes/font_size = 25
 
 [connection signal="pressed" from="ActionMenu/VBoxContainer/attack" to="." method="_on_Attack_pressed"]
 [connection signal="pressed" from="ActionMenu/VBoxContainer/magic" to="." method="_on_magic_pressed"]

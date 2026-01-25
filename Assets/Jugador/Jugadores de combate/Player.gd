@@ -19,8 +19,14 @@ var alive: bool = true
 
 # --- Métodos de utilidad para objetos ---
 func heal(amount: int):
-	hp = min(hp + amount, max_hp)
-	print(nombre, " se cura ", amount, " HP. HP actual: ", hp)
+		var before = hp
+		hp = min(hp + amount, max_hp)
+		var healed = hp - before
+
+		if healed > 0:
+			mostrar_curación(healed)
+
+		print(nombre, " se cura ", healed, " HP. HP actual: ", hp)
 
 func restore_mp(amount: int):
 	mp = min(mp + amount, max_mp)
@@ -48,9 +54,16 @@ func take_damage(amount: int):
 func mostrar_daño_recibido(valor: int, color: Color) -> void:
 		var indicador = DAMAGE_INDICATOR.instantiate()
 		add_child(indicador)
-		indicador.position = Vector2(0, -20)
+		indicador.position = Vector2(0, 0)
 		indicador.mostrar_daño(valor, color)
 
+func mostrar_curación(valor: int) -> void:
+		var indicador = DAMAGE_INDICATOR.instantiate()
+		add_child(indicador)
+		indicador.position = Vector2(0, -20)
+
+		# Verde para curación
+		indicador.mostrar_daño(valor, Color(0.3, 1.0, 0.3))
 	
 
 func die():

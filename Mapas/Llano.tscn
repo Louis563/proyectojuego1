@@ -1,6 +1,6 @@
 [gd_scene load_steps=16 format=4 uid="uid://cm4rs4b758vrj"]
 
-[ext_resource type="Script" uid="uid://dq83sv3pcsigw" path="res://Mapas/llano.gd" id="1_s0e34"]
+[ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="1_2lxe8"]
 [ext_resource type="Texture2D" uid="uid://cue6cc2gid8ds" path="res://Assets/Texturas/summer_plains_v1.0_standard/tiles.png" id="2_tk74h"]
 [ext_resource type="TileSet" uid="uid://cm81yr2ox0w4u" path="res://summer.tres" id="3_eivlt"]
 [ext_resource type="Texture2D" uid="uid://biln7snjau36u" path="res://Assets/Texturas/summer_plains_v1.0_standard/assets.png" id="3_tk74h"]
@@ -3572,7 +3572,9 @@ sources/0 = SubResource("TileSetAtlasSource_dsdc3")
 
 [node name="Llano" type="Node2D"]
 z_index = -1
-script = ExtResource("1_s0e34")
+
+[node name="Jugador" parent="." instance=ExtResource("1_2lxe8")]
+position = Vector2(-307, 15)
 
 [node name="background" type="TileMapLayer" parent="."]
 z_index = -1
@@ -3623,10 +3625,5 @@ tile_map_data = PackedByteArray("AAD0/93/AAAVAB8AAAD0/97/AAAVACAAAAD1/93/AAAWAB8
 tile_set = ExtResource("4_o8wvt")
 
 [node name="TransicionNivel" parent="." instance=ExtResource("6_2lxe8")]
-position = Vector2(-320, 16)
-level = "uid://1p8q6o7oy0cx"
-
-[node name="TransicionNivel2" parent="." instance=ExtResource("6_2lxe8")]
-position = Vector2(336, -544)
-level = "uid://cs12jqnvy3bdw"
-side = 3
+position = Vector2(374, -555)
+scale = Vector2(2.32238, 0.36)

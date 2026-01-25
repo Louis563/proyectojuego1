@@ -8,9 +8,25 @@ var current_tilemap_bounds : Array [ Vector2 ]
 var target_transition : String
 var position_offset : Vector2
 
-func _ready() -> void:
-    await get_tree().process_frame
-    level_loaded.emit()
+var levels := [
+    "res://Mapas/Granja.tscn", 
+    "res://Mapas/Llano.tscn", 
+    "res://Mapas/Bosque.tscn", 
+    "res://Mapas/Paramo.tscn"
+]
+var current_level_index := 0
+
+func go_to_next_level():
+    current_level_index += 1
+    
+    if current_level_index < levels.size():
+        var next_level = levels[current_level_index]
+        get_tree().call_deferred("change_scene_to_file", next_level)
+    else:
+        print("¡Ganaste el juego!")
+        # Aquí podrías volver al menú principal o reiniciar
+        #current_level_index = 0 
+        #get_tree().change_scene_to_file("res://Menus/Creditos.tscn")
 
 func ChangeTilemapBounds( bounds : Array[ Vector2 ] ) -> void:
     current_tilemap_bounds = bounds

@@ -1,17 +1,14 @@
-[gd_scene load_steps=7 format=4 uid="uid://cs12jqnvy3bdw"]
+[gd_scene load_steps=5 format=4 uid="uid://cs12jqnvy3bdw"]
 
-[ext_resource type="Script" uid="uid://casohloqk6jfg" path="res://Mapas/bosque.gd" id="1_1ur27"]
 [ext_resource type="TileSet" uid="uid://bcb11gyttew0v" path="res://Mapas/32brownrock physics.tres" id="2_57hs6"]
 [ext_resource type="TileSet" uid="uid://cm81yr2ox0w4u" path="res://summer.tres" id="3_ce3am"]
-[ext_resource type="PackedScene" uid="uid://kijex7821rdk" path="res://Mapas/transicion_nivel.tscn" id="3_digyy"]
 [ext_resource type="Script" uid="uid://dbgqat2t1q7dq" path="res://Mapas/LevelMap.gd" id="3_xqc46"]
 [ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="4_6lhkb"]
 
 [node name="Bosque" type="Node2D"]
-script = ExtResource("1_1ur27")
 
 [node name="Jugador" parent="." instance=ExtResource("4_6lhkb")]
-position = Vector2(-477, 132)
+position = Vector2(-466, 265)
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="."]
 z_index = -1
@@ -69,13 +66,3 @@ tile_set = ExtResource("2_57hs6")
 [node name="TileMapLayer3" type="TileMapLayer" parent="trees"]
 tile_map_data = PackedByteArray("AAALAAUAAQAzAAoAAAALAAYAAQAzAAsAAAALAAcAAQAzAAwAAAALAAgAAQAzAA0AAAAMAAQAAQA0AAkAAAAMAAUAAQA0AAoAAAAMAAYAAQA0AAsAAAAMAAcAAQA0AAwAAAAMAAgAAQA0AA0AAAAMAAkAAQA0AA4AAAANAAUAAQA1AAoAAAANAAYAAQA1AAsAAAANAAcAAQA1AAwAAAANAAgAAQA1AA0AAADZ/wUAAQAzAAoAAADZ/wYAAQAzAAsAAADZ/wcAAQAzAAwAAADZ/wgAAQAzAA0AAADa/wQAAQA0AAkAAADa/wUAAQA0AAoAAADa/wYAAQA0AAsAAADa/wcAAQA0AAwAAADa/wgAAQA0AA0AAADa/wkAAQA0AA4AAADb/wUAAQA1AAoAAADb/wYAAQA1AAsAAADb/wcAAQA1AAwAAADb/wgAAQA1AA0AAAA=")
 tile_set = ExtResource("2_57hs6")
-
-[node name="TransicionNivel" parent="." instance=ExtResource("3_digyy")]
-position = Vector2(-464, -480)
-size = 3
-side = 2
-
-[node name="TransicionNivel2" parent="." instance=ExtResource("3_digyy")]
-position = Vector2(-464, 320)
-size = 3
-side = 2

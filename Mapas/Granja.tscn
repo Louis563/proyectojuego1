@@ -1,6 +1,5 @@
-[gd_scene load_steps=9 format=4 uid="uid://1p8q6o7oy0cx"]
+[gd_scene load_steps=8 format=4 uid="uid://1p8q6o7oy0cx"]
 
-[ext_resource type="Script" uid="uid://dv8qsfh6x1et1" path="res://Mapas/granja.gd" id="1_qdykv"]
 [ext_resource type="TileSet" uid="uid://bcb11gyttew0v" path="res://Mapas/32brownrock physics.tres" id="2_q45wd"]
 [ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="2_qlhn5"]
 [ext_resource type="Texture2D" uid="uid://uj4x445o6xwp" path="res://Assets/Texturas/Background-animals-tileset/animals-tileset.png" id="3_q45wd"]
@@ -124,7 +123,6 @@ sources/0 = SubResource("TileSetAtlasSource_qlhn5")
 
 [node name="Granja" type="Node2D"]
 y_sort_enabled = true
-script = ExtResource("1_qdykv")
 
 [node name="Jugador" parent="." instance=ExtResource("2_qlhn5")]
 
@@ -158,5 +156,3 @@ tile_set = SubResource("TileSet_05aa6")
 
 [node name="TransicionNivel" parent="." instance=ExtResource("6_5omu1")]
 position = Vector2(544, -240)
-level = "uid://cm4rs4b758vrj"
-size = 4

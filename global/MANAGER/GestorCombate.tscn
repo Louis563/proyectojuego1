@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://culf11cdnlk4d"]
+[gd_scene load_steps=9 format=3 uid="uid://culf11cdnlk4d"]
 
 [ext_resource type="Script" uid="uid://bxiwv8ivviofu" path="res://global/MANAGER/combat_manager.gd" id="1_lwkbu"]
 [ext_resource type="PackedScene" uid="uid://clmqkhre1h0fq" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/IUCombate.tscn" id="2_5dstg"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dtut4bqfeu15q" path="res://Mapas/plantillaCombate/PlayerParty.tscn" id="4_yktg8"]
 [ext_resource type="PackedScene" uid="uid://c32yyji1vo1wi" path="res://Mapas/plantillaCombate/EnemyGroup.tscn" id="5_r5kj3"]
 [ext_resource type="Texture2D" uid="uid://bxj1s7bitaen" path="res://Assets/Texturas/mano.png" id="6_xs7id"]
+[ext_resource type="AudioStream" uid="uid://b2mpr1tcrpely" path="res://Assets/Musica/17. Victory.ogg" id="7_osjme"]
+[ext_resource type="AudioStream" uid="uid://bs3fu17f6lfp0" path="res://Assets/Musica/16. Battle.ogg" id="8_yktg8"]
 
 [node name="GestorCombate" type="Node"]
 script = ExtResource("1_lwkbu")
@@ -33,3 +35,10 @@ visible = false
 position = Vector2(53, 0)
 scale = Vector2(0.085, 0.09)
 texture = ExtResource("6_xs7id")
+
+[node name="musica_victoria" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_osjme")
+
+[node name="musica_combate" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_yktg8")
+parameters/looping = true

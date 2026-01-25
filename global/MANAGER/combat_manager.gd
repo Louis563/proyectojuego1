@@ -6,6 +6,7 @@ var enemies: Array = []
 var turn_order: Array = []
 var current_turn: int = 0
 var enemy_index: int = 0
+var Inicio_bucle := 16.0
 
 # --- Items Manager ---
 var items_manager: Node = null
@@ -23,8 +24,8 @@ const PLAYER_SCENES = {
 }
 
 var player_positions = [
-	Vector2(100, -40),
-	Vector2(0, -40),
+	Vector2(100, -50),
+	Vector2(10, -25),
 	Vector2(0, 80),
 	Vector2(100, 120)
 ]
@@ -37,6 +38,7 @@ func _ready():
 	setup_player_party()
 	spawn_random_enemies()
 	build_turn_order()
+	$musica_combate.play()
 
 	# Instanciar el gestor de objetos si no existe
 	if not items_manager:
@@ -57,6 +59,8 @@ func _ready():
 	$IuCombate.connect("objeto_seleccionado", Callable(self, "resolve_item"))
 
 	start_turn()
+
+# --- OBJETOS ---
 func on_item_pressed():
 	# Mostrar lista real de objetos con cantidades
 	var item_list = items_manager.get_item_list()
@@ -110,6 +114,7 @@ func build_turn_order():
 
 # --- INICIO DE TURNO ---
 func start_turn():
+
 	if enemies.filter(func(e): return e.alive).is_empty():
 		print("¡Victoria! No quedan enemigos.")
 		return
@@ -175,10 +180,44 @@ func end_turn():
 	state = CombatState.MENU
 	start_turn()
 
+# Mostrar pantalla de victoria y desactivar inputs del combate de forma segura
+func show_victory():
+	if $musica_combate.playing:
+		$musica_combate.stop()
+
+	print("¡Victoria! No quedan enemigos.")
+	var vict = $IuCombate.get_node_or_null("Llb_Victoria")
+	if vict:
+		vict.visible = true
+		# Reproducir animación si existe un AnimationPlayer hijo
+		var anim = vict.get_node_or_null("anim_victoria")
+		if anim and anim is AnimationPlayer:
+			# La animación en la librería se llama "Entrada" (case-sensitive)
+			if anim.has_animation("Entrada"):
+				anim.play("Entrada")
+			elif anim.has_animation("entrada"):
+				anim.play("entrada")
+
+		# Reproducir música de victoria si existe un AudioStreamPlayer2D llamado 'musica_victoria'
+		var music = get_node_or_null("musica_victoria")
+		if music and (music is AudioStreamPlayer or music is AudioStreamPlayer2D):
+			music.play()
+	else:
+		print("Nodo 'IuCombate/Llb_Victoria' no encontrado. Revisa la jerarquía de IUCombate.tscn")
+
+	var action_menu = $IuCombate.get_node_or_null("ActionMenu")
+	if action_menu:
+		action_menu.visible = false
+
+	# Desactivar inputs del combate para evitar más interacciones
+	set_process_input(false)
+
 # --- BOTÓN ATACAR ---
 func on_attack_pressed():
 	if enemies.filter(func(e): return e.alive).is_empty():
 		print("No quedan enemigos. ¡Victoria!")
+		# Usar la función centralizada para manejar la victoria (muestra UI, anima y desactiva inputs)
+		show_victory()
 		return
 	state = CombatState.SELECT_ENEMY
 	enemy_index = 0
@@ -207,6 +246,10 @@ func resolve_action(action: String, target: Node):
 		if not target.alive:
 			enemies = enemies.filter(func(e): return e.alive)
 			enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
+			# Si ya no quedan enemigos, mostrar UI de victoria y terminar combate
+			if enemies.filter(func(e): return e.alive).is_empty():
+				show_victory()
+				return
 
 	current_turn += 1
 	state = CombatState.MENU
@@ -240,6 +283,7 @@ func update_enemy_selector():
 
 # --- INPUTS ---
 func _process(_delta):
+
 	if state == CombatState.SELECT_ENEMY:
 		var alive_enemies = enemies.filter(func(e): return e.alive)
 		if alive_enemies.is_empty():
@@ -266,14 +310,35 @@ func _process(_delta):
 					print(active.nombre, " lanza ", spell_name, " a ", target_enemy.nombre)
 					target_enemy.take_damage(active.attack * 2)
 					active.mp -= 5
+					# Actualizar lista de enemigos y comprobar victoria
+					if not target_enemy.alive:
+						enemies = enemies.filter(func(e): return e.alive)
+						enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
+						if enemies.filter(func(e): return e.alive).is_empty():
+							show_victory()
+							return
 				elif spell_name == "Hielo" and active.mp >= 4:
 					print(active.nombre, " lanza ", spell_name, " a ", target_enemy.nombre)
 					target_enemy.take_damage(active.attack * 1.5)
 					active.mp -= 4
+					# Actualizar lista de enemigos y comprobar victoria
+					if not target_enemy.alive:
+						enemies = enemies.filter(func(e): return e.alive)
+						enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
+						if enemies.filter(func(e): return e.alive).is_empty():
+							show_victory()
+							return
 				elif spell_name == "Rayo" and active.mp >= 6:
 					print(active.nombre, " lanza ", spell_name, " a ", target_enemy.nombre)
 					target_enemy.take_damage(active.attack * 3)
 					active.mp -= 6
+					# Actualizar lista de enemigos y comprobar victoria
+					if not target_enemy.alive:
+						enemies = enemies.filter(func(e): return e.alive)
+						enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
+						if enemies.filter(func(e): return e.alive).is_empty():
+							show_victory()
+							return
 				else:
 					print(active.nombre, " no tiene suficiente MP para ", spell_name)
 

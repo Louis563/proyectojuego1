@@ -13,10 +13,10 @@ signal objeto_seleccionado(item_name)
 
 func _ready():
 	# Conexión de botones principales
-	$ActionMenu/VBoxContainer/attack.connect("pressed", Callable(self, "_on_bt_atacar_pressed"))
-	$ActionMenu/VBoxContainer/defend.connect("pressed", Callable(self, "_on_bt_defender_pressed"))
-	$ActionMenu/VBoxContainer/magic.connect("pressed", Callable(self, "_on_bt_magia_pressed"))
-	$ActionMenu/VBoxContainer/item.connect("pressed", Callable(self, "_on_bt_items_pressed"))
+	$ActionMenu/contenedor_btn/attack.connect("pressed", Callable(self, "_on_bt_atacar_pressed"))
+	$ActionMenu/contenedor_btn/defend.connect("pressed", Callable(self, "_on_bt_defender_pressed"))
+	$ActionMenu/contenedor_btn/magic.connect("pressed", Callable(self, "_on_bt_magia_pressed"))
+	$ActionMenu/contenedor_btn/item.connect("pressed", Callable(self, "_on_bt_items_pressed"))
 
 	# Conexión de submenús
 	magic_menu.connect("id_pressed", Callable(self, "_on_magic_selected"))

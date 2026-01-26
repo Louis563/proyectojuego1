@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://lc8c8wwd5ltt"]
+
+[ext_resource type="Texture2D" uid="uid://50kloe701wbw" path="res://Assets/Texturas/Jugadores/huesos2.png" id="1_gl4fi"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpi4p"]
+radius = 6.0
+height = 14.0
+
+[node name="Huesos" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -3)
+texture = ExtResource("1_gl4fi")
+hframes = 6
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_xpi4p")

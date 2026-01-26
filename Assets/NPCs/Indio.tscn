@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8gyaoihnqwtr"]
+
+[ext_resource type="Texture2D" uid="uid://dt6qqas5cvrig" path="res://Assets/Texturas/Jugadores/Indio2.png" id="1_ickdv"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_65pc2"]
+radius = 6.0
+height = 14.0
+
+[node name="Indio" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_ickdv")
+hframes = 6
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_65pc2")

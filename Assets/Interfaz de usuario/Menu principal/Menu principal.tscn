@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://bmq3871rv8r10"]
+
+[ext_resource type="Script" uid="uid://bogwcdvffnae1" path="res://Assets/Interfaz de usuario/Menu principal/menu_principal.gd" id="1_3jwrx"]
+[ext_resource type="Texture2D" uid="uid://qrmknsgxse74" path="res://Assets/Interfaz de usuario/Menu principal/vvbo9vn1pcud1.png" id="1_688df"]
+[ext_resource type="StyleBox" uid="uid://drhftypy2uqf3" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-HOVER.tres" id="2_3jwrx"]
+[ext_resource type="StyleBox" uid="uid://djx7mkom10md" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-PRESIONADO2.tres" id="3_3nvrv"]
+[ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES.tres" id="4_r0u4f"]
+
+[node name="MenuPrincipal" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3jwrx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.463869, 0.478131, 0.472002, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_688df")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.0
+offset_top = -45.0
+offset_right = 66.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="Jugar" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = ExtResource("2_3jwrx")
+theme_override_styles/pressed = ExtResource("3_3nvrv")
+theme_override_styles/normal = ExtResource("4_r0u4f")
+text = "JUGAR"
+
+[node name="Opciones" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = ExtResource("2_3jwrx")
+theme_override_styles/pressed = ExtResource("3_3nvrv")
+theme_override_styles/normal = ExtResource("4_r0u4f")
+text = "OPCIONES"
+
+[node name="Salir" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/hover = ExtResource("2_3jwrx")
+theme_override_styles/pressed = ExtResource("3_3nvrv")
+theme_override_styles/normal = ExtResource("4_r0u4f")
+text = "SALIR"
+
+[connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
+[connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
+[connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]

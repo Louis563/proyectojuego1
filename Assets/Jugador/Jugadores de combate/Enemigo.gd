@@ -3,8 +3,8 @@ class_name Enemy
 
 # --- Atributos básicos ---
 var nombre: String = "Goblin"
-var hp: int = 50
-var attack: int = 10
+var hp: int = 5000
+var attack: int = 1000
 var defense: int = 3
 var alive: bool = true
 

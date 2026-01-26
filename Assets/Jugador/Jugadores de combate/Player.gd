@@ -66,6 +66,9 @@ func mostrar_curación(valor: int) -> void:
 		indicador.mostrar_daño(valor, Color(0.3, 1.0, 0.3))
 	
 
+var is_dead := false
+
 func die():
-	print(nombre, " ha sido derrotado.")
-	hide()
+		is_dead = true
+		hide()
+		get_tree().call_group("combat_manager", "verificar_derrota")

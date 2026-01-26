@@ -6,7 +6,6 @@ var enemies: Array = []
 var turn_order: Array = []
 var current_turn: int = 0
 var enemy_index: int = 0
-var Inicio_bucle := 16.0
 
 # --- Items Manager ---
 var items_manager: Node = null
@@ -39,6 +38,8 @@ func _ready():
 	spawn_random_enemies()
 	build_turn_order()
 	$musica_combate.play()
+	verificar_derrota()
+	add_to_group("combat_manager")
 
 	# Instanciar el gestor de objetos si no existe
 	if not items_manager:
@@ -127,7 +128,13 @@ func start_turn():
 
 	for c in turn_order:
 		if c.has_node("Selector"):
-			c.get_node("Selector").visible = false
+			var sel = c.get_node("Selector")
+			sel.visible = false
+			# Detener animación del marcador si existe
+			var marc = sel.get_node_or_null("marcador")
+			if marc and marc is AnimationPlayer:
+				if marc.is_playing():
+					marc.stop()
 
 	var active = turn_order[current_turn]
 	if not active.alive:
@@ -136,8 +143,14 @@ func start_turn():
 		return
 
 	if active is Player and active.has_node("Selector"):
-		active.get_node("Selector").visible = true
-
+		var sel = active.get_node("Selector")
+		sel.visible = true
+		# Reproducir la animación 'flotar' desde el AnimationPlayer llamado 'marcador' dentro de Selector
+		var marc = sel.get_node_or_null("marcador")
+		if marc and marc is AnimationPlayer:
+			if marc.has_animation("flotar"):
+				marc.play("flotar")
+			
 	if active is Player:
 		$IuCombate.show_menu(active)
 		state = CombatState.MENU
@@ -208,9 +221,60 @@ func show_victory():
 	var action_menu = $IuCombate.get_node_or_null("ActionMenu")
 	if action_menu:
 		action_menu.visible = false
+		$EnemySelector.visible = false
 
 	# Desactivar inputs del combate para evitar más interacciones
 	set_process_input(false)
+
+func mostrar_derrota():
+		var ui = $IuCombate
+		if $musica_combate.playing:
+			$musica_combate.stop()
+
+		# Mostrar label (soporta nombres antiguos/nuevos)
+		var derrota_label = ui.get_node_or_null("Llb_Derrota")
+		if derrota_label == null:
+			derrota_label = ui.get_node_or_null("lbl_derrota")
+
+		if derrota_label:
+			derrota_label.visible = true
+			var anim = derrota_label.get_node_or_null("anim_derrota")
+			if anim and anim is AnimationPlayer:
+				if anim.has_animation("Derrota"):
+					anim.play("Derrota")
+				elif anim.has_animation("derrota"):
+					anim.play("derrota")
+		else:
+			print("Nodo de derrota no encontrado en IUCombate (buscado 'Llb_Derrota' y 'lbl_derrota').")
+
+		# Música de derrota (si existe)
+		var defeat_music = get_node_or_null("musica_derrota")
+		if defeat_music and (defeat_music is AudioStreamPlayer or defeat_music is AudioStreamPlayer2D):
+			defeat_music.play()
+
+		# Desactivar input
+		set_process_input(false)
+
+		# Ocultar menú
+		var action_menu = $IuCombate.get_node_or_null("ActionMenu")
+		if action_menu:
+			action_menu.visible = false
+			$EnemySelector.visible = false
+
+
+
+func verificar_derrota():
+		var todos_muertos := true
+
+		for player in $PlayerParty.get_children():
+			if player.is_dead == false:
+				todos_muertos = false
+				break
+
+		if todos_muertos:
+			mostrar_derrota()
+
+
 
 # --- BOTÓN ATACAR ---
 func on_attack_pressed():

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://clmqkhre1h0fq"]
+[gd_scene load_steps=15 format=3 uid="uid://clmqkhre1h0fq"]
 
 [ext_resource type="Script" uid="uid://dg033qm8kvewj" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/iu_combate.gd" id="1_hhmmf"]
 [ext_resource type="FontFile" uid="uid://caq3m7r3h2bvo" path="res://Fuentes/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="2_c8p38"]
@@ -66,9 +66,50 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(1, 1)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -5)]
+}
+
+[sub_resource type="Animation" id="Animation_upddt"]
+resource_name = "Derrota"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.93333, 2.93343),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -50), Vector2(0, -5), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2.96667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.972549, 0.905882, 0.231373), Color(1, 0.2, 0.4, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ga2wq"]
 _data = {
+&"Derrota": SubResource("Animation_upddt"),
 &"Entrada": SubResource("Animation_1qnp4"),
 &"RESET": SubResource("Animation_ga2wq")
 }
@@ -153,10 +194,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_colors/font_color = Color(0.956863, 0.768627, 0.188235, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.388235)
 theme_override_constants/shadow_offset_x = 7
 theme_override_constants/shadow_offset_y = 4
-theme_override_constants/outline_size = 8
+theme_override_constants/outline_size = 7
 theme_override_constants/shadow_outline_size = 15
 theme_override_fonts/font = ExtResource("9_1qnp4")
 theme_override_font_sizes/font_size = 100
@@ -165,6 +206,31 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="anim_victoria" type="AnimationPlayer" parent="Llb_Victoria"]
+libraries = {
+&"": SubResource("AnimationLibrary_ga2wq")
+}
+
+[node name="lbl_derrota" type="Label" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.2, 0.4, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.882353)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 0.388235)
+theme_override_constants/shadow_offset_x = 7
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 15
+theme_override_fonts/font = ExtResource("9_1qnp4")
+theme_override_font_sizes/font_size = 75
+text = "DERROTADOS!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="anim_derrota" type="AnimationPlayer" parent="lbl_derrota"]
 libraries = {
 &"": SubResource("AnimationLibrary_ga2wq")
 }

@@ -1,8 +1,42 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4fvkoulveffq"]
+[gd_scene load_steps=7 format=3 uid="uid://d4fvkoulveffq"]
 
 [ext_resource type="Script" uid="uid://br33ghxmxdawb" path="res://Assets/Jugador/Jugadores de combate/ramon.gd" id="1_hb8g2"]
 [ext_resource type="Texture2D" uid="uid://duqi52cdhjd7o" path="res://Assets/Texturas/Jugadores/Ramon.png" id="2_hb8g2"]
 [ext_resource type="Texture2D" uid="uid://btfn7vk7ome20" path="res://Assets/Interfaz de usuario/UI blanco y negro/black_and_white_theme/icons/arrow_down.svg" id="3_hb8g2"]
+[ext_resource type="Animation" uid="uid://bgbk560ww1828" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/flotar.res" id="4_835oi"]
+
+[sub_resource type="Animation" id="Animation_n8n2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-2, -90)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tkphq"]
+_data = {
+&"RESET": SubResource("Animation_n8n2v"),
+&"flotar": ExtResource("4_835oi")
+}
 
 [node name="Ramon" type="Node2D"]
 script = ExtResource("1_hb8g2")
@@ -17,6 +51,11 @@ region_rect = Rect2(19, 90, 15, 26)
 
 [node name="Selector" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-4, -100)
+position = Vector2(-2, -90)
 scale = Vector2(4.0625, 3.375)
 texture = ExtResource("3_hb8g2")
+
+[node name="marcador" type="AnimationPlayer" parent="Selector"]
+libraries = {
+&"": SubResource("AnimationLibrary_tkphq")
+}

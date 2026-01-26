@@ -19,5 +19,7 @@ expand_margin_left = 1.0
 expand_margin_top = 1.0
 expand_margin_right = 1.0
 expand_margin_bottom = 1.0
+shadow_color = Color(0, 0, 0, 0.8)
 shadow_size = 13
+shadow_offset = Vector2(6, 4)
 anti_aliasing = false

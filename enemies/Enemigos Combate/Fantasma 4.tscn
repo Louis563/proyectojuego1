@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://t67c4j542n0n"]
+
+[ext_resource type="Texture2D" uid="uid://buxu4hen6ecla" path="res://Assets/Texturas/Fantasma 4.png" id="1_lqdvx"]
+
+[node name="Fantasma4" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, 3)
+texture = ExtResource("1_lqdvx")
+region_enabled = true
+region_rect = Rect2(2, 1, 51, 50)

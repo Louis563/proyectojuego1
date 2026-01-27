@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2l7rgsvctp8b"]
+
+[ext_resource type="Script" uid="uid://cs8kf6txgd0yt" path="res://global/Guardado/menu_guardado.gd" id="1_20i50"]
+[ext_resource type="StyleBox" uid="uid://drhftypy2uqf3" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-HOVER.tres" id="2_6okxc"]
+[ext_resource type="Theme" uid="uid://bdqasctlp7qkp" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Tema-popup.tres" id="2_b87fb"]
+[ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES.tres" id="2_ntpgx"]
+[ext_resource type="StyleBox" uid="uid://djx7mkom10md" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-PRESIONADO2.tres" id="3_2lvl6"]
+
+[node name="MenuGuardado" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_20i50")
+
+[node name="slot1" type="Button" parent="."]
+layout_mode = 0
+offset_right = 55.0
+offset_bottom = 14.0
+theme_override_styles/hover = ExtResource("2_6okxc")
+theme_override_styles/pressed = ExtResource("3_2lvl6")
+theme_override_styles/normal = ExtResource("2_ntpgx")
+
+[node name="slot2" type="Button" parent="."]
+layout_mode = 0
+offset_top = 26.0
+offset_right = 55.0
+offset_bottom = 40.0
+theme_override_styles/normal = ExtResource("2_ntpgx")
+
+[node name="slot3" type="Button" parent="."]
+layout_mode = 0
+offset_top = 51.0
+offset_right = 55.0
+offset_bottom = 65.0
+theme_override_styles/normal = ExtResource("2_ntpgx")
+
+[node name="Confirmacion" type="AcceptDialog" parent="."]
+title = ""
+position = Vector2i(0, 36)
+size = Vector2i(296, 100)
+theme = ExtResource("2_b87fb")
+ok_button_text = "Si"
+dialog_text = "Deseas guardar en este slot?"

@@ -1,9 +1,14 @@
-[gd_resource type="Theme" load_steps=3 format=3 uid="uid://bdqasctlp7qkp"]
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://bdqasctlp7qkp"]
 
 [ext_resource type="StyleBox" uid="uid://duvpeh6yjmkne" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/Hover-popup.tres" id="1_38t4b"]
 [ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES.tres" id="2_1cd0d"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_38t4b"]
+
 [resource]
 default_font_size = 20
+AcceptDialog/font_sizes/title_font_size = 20
+AcceptDialog/styles/embedded_border = SubResource("StyleBoxFlat_38t4b")
+AcceptDialog/styles/panel = ExtResource("2_1cd0d")
 PopupMenu/styles/hover = ExtResource("1_38t4b")
 PopupMenu/styles/panel = ExtResource("2_1cd0d")

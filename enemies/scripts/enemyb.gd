@@ -52,7 +52,7 @@ func _recursive_find(node: Node, node_name: String) -> Node:
 func _physics_process(_delta: float) -> void:
 		if jugador != null:
 			var to_player = jugador.global_position - global_position
-			if to_player.length() < 32: # Distancia de parada (ajusta si lo deseas)
+			if to_player.length() < 3: # Distancia de parada
 				velocity = Vector2.ZERO
 				set_direction(Vector2.ZERO)
 			else:

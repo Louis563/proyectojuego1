@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpkd2nor2oipa"]
+
+[ext_resource type="Texture2D" uid="uid://4mb5hivm007l" path="res://enemies/Jefes/Bringer-of-Death-SpritSheet.png" id="1_b054p"]
+
+[node name="JefeFinalElSilbon" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_b054p")
+region_enabled = true
+region_rect = Rect2(615.13, 20.7095, 61.1954, 60.2965)

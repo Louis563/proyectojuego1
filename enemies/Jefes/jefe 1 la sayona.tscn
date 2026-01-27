@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://b1ueewojwsy0n"]
+
+[ext_resource type="Texture2D" uid="uid://gyu2eposaewx" path="res://enemies/Jefes/La Sayona en pixel art.png" id="1_8liar"]
+
+[node name="Jefe1LaSayona" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-214656, -51968)
+scale = Vector2(645, 345)
+texture = ExtResource("1_8liar")
+region_enabled = true
+region_rect = Rect2(2.52408, 11.979, 94.501, 137.093)

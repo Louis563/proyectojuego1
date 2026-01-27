@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfg6vfcqusvxj"]
+
+[ext_resource type="Texture2D" uid="uid://bl1rsuw17au7f" path="res://enemies/Jefes/toro pixel art.png" id="1_0psdn"]
+
+[node name="Jefe2ToroFantasma" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(12.5, 0)
+scale = Vector2(0.899194, 1)
+texture = ExtResource("1_0psdn")
+region_enabled = true
+region_rect = Rect2(533.231, 229.333, 245.538, 152)

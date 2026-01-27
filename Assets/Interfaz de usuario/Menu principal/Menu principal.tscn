@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bmq3871rv8r10"]
+[gd_scene load_steps=7 format=3 uid="uid://bmq3871rv8r10"]
 
 [ext_resource type="Script" uid="uid://bogwcdvffnae1" path="res://Assets/Interfaz de usuario/Menu principal/menu_principal.gd" id="1_3jwrx"]
 [ext_resource type="Texture2D" uid="uid://qrmknsgxse74" path="res://Assets/Interfaz de usuario/Menu principal/vvbo9vn1pcud1.png" id="1_688df"]
 [ext_resource type="StyleBox" uid="uid://drhftypy2uqf3" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-HOVER.tres" id="2_3jwrx"]
 [ext_resource type="StyleBox" uid="uid://djx7mkom10md" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-PRESIONADO2.tres" id="3_3nvrv"]
 [ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES.tres" id="4_r0u4f"]
+[ext_resource type="AudioStream" uid="uid://bk17x1tr2e2sj" path="res://Assets/Musica/08 - Kaosu no Shinten.ogg" id="6_3nvrv"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -71,6 +72,10 @@ theme_override_styles/hover = ExtResource("2_3jwrx")
 theme_override_styles/pressed = ExtResource("3_3nvrv")
 theme_override_styles/normal = ExtResource("4_r0u4f")
 text = "SALIR"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_3nvrv")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
 [connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]

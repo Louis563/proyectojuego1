@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bwtl6fj8bi0hx"
+path="res://.godot/imported/18 - Fuyuu Shiro.ogg-936a2c2b139588dd158c59f6c86e68d9.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Musica/18 - Fuyuu Shiro.ogg"
+dest_files=["res://.godot/imported/18 - Fuyuu Shiro.ogg-936a2c2b139588dd158c59f6c86e68d9.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

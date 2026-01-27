@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bk17x1tr2e2sj"
+path="res://.godot/imported/08 - Kaosu no Shinten.ogg-8fc10d18347caceb08848d825c211038.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Musica/08 - Kaosu no Shinten.ogg"
+dest_files=["res://.godot/imported/08 - Kaosu no Shinten.ogg-8fc10d18347caceb08848d825c211038.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

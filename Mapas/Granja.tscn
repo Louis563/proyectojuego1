@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://1p8q6o7oy0cx"]
+[gd_scene load_steps=10 format=4 uid="uid://1p8q6o7oy0cx"]
 
 [ext_resource type="TileSet" uid="uid://bcb11gyttew0v" path="res://Mapas/32brownrock physics.tres" id="2_q45wd"]
 [ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="2_qlhn5"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://dbgqat2t1q7dq" path="res://Mapas/LevelMap.gd" id="4_05aa6"]
 [ext_resource type="PackedScene" uid="uid://kijex7821rdk" path="res://Mapas/transicion_nivel.tscn" id="6_5omu1"]
 [ext_resource type="PackedScene" uid="uid://ea6hop6j3r4p" path="res://Assets/NPCs/Jose.tscn" id="6_usr3x"]
+[ext_resource type="AudioStream" uid="uid://ct8vv0q2vrdas" path="res://Assets/Musica/05 - Opening Theme.ogg" id="7_usr3x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qlhn5"]
 texture = ExtResource("3_q45wd")
@@ -162,3 +163,7 @@ position = Vector2(544, -240)
 
 [node name="Jose" parent="." instance=ExtResource("6_usr3x")]
 position = Vector2(344, -1143)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_usr3x")
+autoplay = true

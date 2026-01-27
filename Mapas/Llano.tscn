@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://cm4rs4b758vrj"]
+[gd_scene load_steps=23 format=4 uid="uid://cm4rs4b758vrj"]
 
 [ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="1_2lxe8"]
 [ext_resource type="Script" uid="uid://dq83sv3pcsigw" path="res://Mapas/llano.gd" id="1_2wnw5"]
@@ -9,6 +9,7 @@
 [ext_resource type="TileSet" uid="uid://q3fik6fc5j2n" path="res://summer_assets.tres" id="4_o8wvt"]
 [ext_resource type="PackedScene" uid="uid://kijex7821rdk" path="res://Mapas/transicion_nivel.tscn" id="6_2lxe8"]
 [ext_resource type="PackedScene" uid="uid://c8gyaoihnqwtr" path="res://Assets/NPCs/Indio.tscn" id="8_dsdc3"]
+[ext_resource type="AudioStream" uid="uid://cjod8trscoxlh" path="res://Assets/Musica/10 - Machi.ogg" id="10_kl56l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o8wvt"]
 texture = ExtResource("2_tk74h")
@@ -3747,3 +3748,7 @@ shape = SubResource("RectangleShape2D_kl56l")
 
 [node name="Indio" parent="." instance=ExtResource("8_dsdc3")]
 position = Vector2(319, 208)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_kl56l")
+autoplay = true

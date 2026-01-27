@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://dkb8adas7p1sw"]
+[gd_scene load_steps=11 format=4 uid="uid://dkb8adas7p1sw"]
 
 [ext_resource type="Script" uid="uid://chsxklrdq6274" path="res://Mapas/pantano.gd" id="1_do01f"]
 [ext_resource type="Texture2D" uid="uid://dwg4570opryup" path="res://Assets/Texturas/ground_stone1.png" id="2_37nyo"]
 [ext_resource type="Script" uid="uid://dbgqat2t1q7dq" path="res://Mapas/LevelMap.gd" id="3_33pln"]
 [ext_resource type="PackedScene" uid="uid://drd4a2uk6tfa" path="res://Assets/Jugador/jugador.tscn" id="4_e0sb3"]
+[ext_resource type="AudioStream" uid="uid://bwtl6fj8bi0hx" path="res://Assets/Musica/18 - Fuyuu Shiro.ogg" id="5_mplmc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jt6fl"]
 texture = ExtResource("2_37nyo")
@@ -319,3 +320,7 @@ shape = SubResource("RectangleShape2D_d52r8")
 
 [node name="Jugador" parent="Colision4" instance=ExtResource("4_e0sb3")]
 position = Vector2(-443, 193)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_mplmc")
+autoplay = true

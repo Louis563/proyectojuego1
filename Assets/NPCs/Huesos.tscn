@@ -1,12 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://lc8c8wwd5ltt"]
+[gd_scene load_steps=4 format=3 uid="uid://lc8c8wwd5ltt"]
 
 [ext_resource type="Texture2D" uid="uid://50kloe701wbw" path="res://Assets/Texturas/Jugadores/huesos2.png" id="1_gl4fi"]
+[ext_resource type="Script" uid="uid://pqtnm1nmnhov" path="res://Assets/NPCs/huesos.gd" id="1_xpi4p"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpi4p"]
 radius = 6.0
 height = 14.0
 
 [node name="Huesos" type="CharacterBody2D"]
+script = ExtResource("1_xpi4p")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -3)

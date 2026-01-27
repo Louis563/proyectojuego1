@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ea6hop6j3r4p"]
+[gd_scene load_steps=4 format=3 uid="uid://ea6hop6j3r4p"]
 
+[ext_resource type="Script" uid="uid://halplnr2sytn" path="res://Assets/NPCs/jose.gd" id="1_cuyis"]
 [ext_resource type="Texture2D" uid="uid://weag6s8lmtgu" path="res://Assets/Texturas/Jugadores/Jose.png" id="1_l4pwr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cuyis"]
 radius = 12.0416
 
 [node name="Jose" type="CharacterBody2D"]
+script = ExtResource("1_cuyis")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-7, -7)

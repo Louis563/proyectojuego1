@@ -1,14 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://doikrimj7uk58"]
+[gd_scene load_steps=4 format=3 uid="uid://doikrimj7uk58"]
 
 [ext_resource type="Texture2D" uid="uid://hevt4vpxld8n" path="res://Assets/Texturas/Jugadores/Ramon2.png" id="1_kjuue"]
+[ext_resource type="Script" uid="uid://cs7cms5icpoht" path="res://Assets/NPCs/ramon.gd" id="1_vg6ks"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnvny"]
+radius = 6.0
+height = 12.0
 
 [node name="Ramon" type="CharacterBody2D"]
+script = ExtResource("1_vg6ks")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(-6, -6)
+position = Vector2(-5, -2)
 scale = Vector2(1, 0.846154)
 texture = ExtResource("1_kjuue")
 hframes = 4
 vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_qnvny")

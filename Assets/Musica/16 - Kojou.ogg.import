@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dtrby7kx4xg8g"
+path="res://.godot/imported/16 - Kojou.ogg-6ab116a416a00b12462796593b642f44.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Musica/16 - Kojou.ogg"
+dest_files=["res://.godot/imported/16 - Kojou.ogg-6ab116a416a00b12462796593b642f44.oggvorbisstr"]
+
+[params]
+
+loop=true
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

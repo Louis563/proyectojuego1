@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://bmq3871rv8r10"]
+[gd_scene load_steps=8 format=3 uid="uid://bmq3871rv8r10"]
 
 [ext_resource type="Script" uid="uid://bogwcdvffnae1" path="res://Assets/Interfaz de usuario/Menu principal/menu_principal.gd" id="1_3jwrx"]
 [ext_resource type="Texture2D" uid="uid://qrmknsgxse74" path="res://Assets/Interfaz de usuario/Menu principal/vvbo9vn1pcud1.png" id="1_688df"]
@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://djx7mkom10md" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES-PRESIONADO2.tres" id="3_3nvrv"]
 [ext_resource type="StyleBox" uid="uid://bohur1gsbtixv" path="res://Assets/Interfaz de usuario/UI PIXEL ART IA/Temas/BASEBOTONES.tres" id="4_r0u4f"]
 [ext_resource type="AudioStream" uid="uid://bk17x1tr2e2sj" path="res://Assets/Musica/08 - Kaosu no Shinten.ogg" id="6_3nvrv"]
+[ext_resource type="FontFile" uid="uid://dqqyip03m2rgt" path="res://Fuentes/Stepalange-x3BLm.otf" id="7_r0u4f"]
 
 [node name="MenuPrincipal" type="Control"]
 layout_mode = 3
@@ -44,13 +45,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -73.0
+offset_left = -72.0
 offset_top = -45.0
-offset_right = 66.0
-offset_bottom = 60.0
+offset_right = 67.0
+offset_bottom = 76.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_constants/separation = 20
 
 [node name="Jugar" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -79,15 +80,19 @@ autoplay = true
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 76.0
+offset_left = 102.0
 offset_top = 39.0
-offset_right = 516.0
+offset_right = 391.0
 offset_bottom = 94.0
 theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 9
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("7_r0u4f")
 theme_override_font_sizes/font_size = 30
-text = "LA ULTIMA APARICIOM"
+text = "LA ULTIMA       APARICION"
 
 [connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
 [connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]

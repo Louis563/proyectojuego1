@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://cs12jqnvy3bdw"]
+[gd_scene load_steps=11 format=4 uid="uid://cs12jqnvy3bdw"]
 
 [ext_resource type="TileSet" uid="uid://bcb11gyttew0v" path="res://Mapas/32brownrock physics.tres" id="2_57hs6"]
 [ext_resource type="TileSet" uid="uid://cm81yr2ox0w4u" path="res://summer.tres" id="3_ce3am"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://doikrimj7uk58" path="res://Assets/NPCs/Ramon.tscn" id="5_ce3am"]
 [ext_resource type="PackedScene" uid="uid://lc8c8wwd5ltt" path="res://Assets/NPCs/Huesos.tscn" id="6_74byp"]
 [ext_resource type="PackedScene" uid="uid://kijex7821rdk" path="res://Mapas/transicion_nivel.tscn" id="7_74byp"]
+[ext_resource type="AudioStream" uid="uid://dtrby7kx4xg8g" path="res://Assets/Musica/16 - Kojou.ogg" id="8_i3nlg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6lhkb"]
 size = Vector2(10.0339, 96.6839)
@@ -109,3 +110,7 @@ position = Vector2(-334, -441)
 [node name="TransicionNivel" parent="." instance=ExtResource("7_74byp")]
 position = Vector2(-437, -992)
 rotation = 1.5708
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_i3nlg")
+autoplay = true

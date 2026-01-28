@@ -45,5 +45,6 @@ stream = ExtResource("7_osjme")
 stream = ExtResource("8_yktg8")
 autoplay = true
 
-[node name="musica_derrota" type="AudioStreamPlayer" parent="."]
+[node name="musica_derrota" type="AudioStreamPlayer2D" parent="."]
+visible = false
 stream = ExtResource("9_yktg8")

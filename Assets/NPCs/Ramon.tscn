@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://doikrimj7uk58"]
+[gd_scene load_steps=5 format=3 uid="uid://doikrimj7uk58"]
 
 [ext_resource type="Texture2D" uid="uid://hevt4vpxld8n" path="res://Assets/Texturas/Jugadores/Ramon2.png" id="1_kjuue"]
 [ext_resource type="Script" uid="uid://cs7cms5icpoht" path="res://Assets/NPCs/ramon.gd" id="1_vg6ks"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_qnvny"]
 radius = 6.0
 height = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vg6ks"]
+radius = 13.0
 
 [node name="Ramon" type="CharacterBody2D"]
 script = ExtResource("1_vg6ks")
@@ -19,3 +22,11 @@ vframes = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_qnvny")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_vg6ks")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

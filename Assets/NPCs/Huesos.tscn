@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://lc8c8wwd5ltt"]
+[gd_scene load_steps=5 format=3 uid="uid://lc8c8wwd5ltt"]
 
 [ext_resource type="Texture2D" uid="uid://50kloe701wbw" path="res://Assets/Texturas/Jugadores/huesos2.png" id="1_gl4fi"]
 [ext_resource type="Script" uid="uid://pqtnm1nmnhov" path="res://Assets/NPCs/huesos.gd" id="1_xpi4p"]
@@ -6,6 +6,9 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xpi4p"]
 radius = 6.0
 height = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xpi4p"]
+radius = 14.0
 
 [node name="Huesos" type="CharacterBody2D"]
 script = ExtResource("1_xpi4p")
@@ -19,3 +22,11 @@ vframes = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_xpi4p")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_xpi4p")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]

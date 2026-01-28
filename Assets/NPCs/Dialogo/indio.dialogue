@@ -1,0 +1,7 @@
+~ start
+Indio: Boss2 esta por delante y bloquea el camino.
+- ¿Hay alguna manera de derrotarlo?
+	Indio: Se asusta con el sonido del ladrido de un perro.
+	- ¿Quieres venir conmigo?
+		Indio: Mejor que nada.
+		Indio se ha unido al grupo. => END

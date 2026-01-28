@@ -1,0 +1,9 @@
+~ start
+Ramon: Me perdi en este laberintico bosque, ademas hay un esqueleto raro por ahí.
+Ramon: Creo que es un muerto que fue maldecido por Boss3.
+Ramon: Boss3 bloquea la salida del bosque.
+- ¿Hay alguna manera de derrotarlo?
+	Ramon: La magia de agua! Esa es su debilidad!.
+	- ¿Quieres venir conmigo?
+		Ramon: Sí, ya quiero salir de este bosque.
+		Jose se ha unido al grupo. => END

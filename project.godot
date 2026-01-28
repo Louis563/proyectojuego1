@@ -23,6 +23,10 @@ Sistema_guardado="*res://global/Guardado/Sistema_guardado.gd"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 GameState="*res://00_Global/game_state_autoload.gd"
 
+[dialogue_manager]
+
+runtime/balloon_path="res://Assets/NPCs/Dialogo/balloon.tscn"
+
 [display]
 
 window/size/viewport_width=480
@@ -89,7 +93,7 @@ menu_guardado_load={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Assets/NPCs/jose.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Assets/NPCs/Dialogo/jose.dialogue", "res://Assets/NPCs/Dialogo/indio.dialogue", "res://Assets/NPCs/Dialogo/ramon.dialogue", "res://Assets/NPCs/Dialogo/huesitos.dialogue")
 
 [layer_names]
 

@@ -1,0 +1,7 @@
+~ start
+Jose: Ey! Me escondi para que el boss1 no me encontrara.
+- ¿Hay alguna manera de derrotarlo?
+	Jose: No estoy del todo seguro pero creo que la magia de fuego deberia ser suficiente.
+	- ¿Quieres venir conmigo?
+		Jose: Sí, supongo que en esta situacion es mejor no estar solo.
+		Jose se ha unido al grupo. => END

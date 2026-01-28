@@ -1,0 +1,8 @@
+~ start
+Huesitos: Ey! Mira! boss4 me ha maldecido!.
+Huesitos: Ayudame a derrotarlo para asi poder descansar en paz.
+- ¿Hay alguna manera de derrotarlo?
+	Huesitos: Es debil contra la magia de viento, pero primero hay que pasar sobre boss3.
+	- ¿Quieres venir conmigo?
+		Hueitos: Síempre y cuando me ayudes! 
+		Huesitos se ha unido al grupo. => END

@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bhb3lotqowvfq"
+path="res://.godot/imported/huesitos.dialogue-6808ffb94e91e57fd3a829377ece834e.tres"
+
+[deps]
+
+source_file="res://Assets/NPCs/Dialogo/huesitos.dialogue"
+dest_files=["res://.godot/imported/huesitos.dialogue-6808ffb94e91e57fd3a829377ece834e.tres"]
+
+[params]
+
+defaults=true

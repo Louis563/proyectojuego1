@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://bxihos1yu2oc4"
+path="res://.godot/imported/ramon.dialogue-a918f7a373685d51cfd4710716890a0b.tres"
+
+[deps]
+
+source_file="res://Assets/NPCs/Dialogo/ramon.dialogue"
+dest_files=["res://.godot/imported/ramon.dialogue-a918f7a373685d51cfd4710716890a0b.tres"]
+
+[params]
+
+defaults=true

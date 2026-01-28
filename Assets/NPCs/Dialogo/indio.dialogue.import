@@ -1,0 +1,16 @@
+[remap]
+
+importer="dialogue_manager"
+importer_version=15
+type="Resource"
+uid="uid://cpeo85qixrfss"
+path="res://.godot/imported/indio.dialogue-7e441bb8e1508c5f401f7f550d8c5e14.tres"
+
+[deps]
+
+source_file="res://Assets/NPCs/Dialogo/indio.dialogue"
+dest_files=["res://.godot/imported/indio.dialogue-7e441bb8e1508c5f401f7f550d8c5e14.tres"]
+
+[params]
+
+defaults=true

@@ -46,25 +46,25 @@ func _ready():
 		items_manager = preload("res://global/MANAGER/items_manager.gd").new()
 		add_child(items_manager)
 		# Demo: añadir algunos objetos al inventario
-		items_manager.add_item("Poción", 3)
-		items_manager.add_item("Éter", 2)
-		items_manager.add_item("Antídoto", 1)
-		items_manager.add_item("Revivir", 1)
+		items_manager.agregar_objeto("Poción", 3)
+		items_manager.agregar_objeto("Éter", 2)
+		items_manager.agregar_objeto("Antídoto", 1)
+		items_manager.agregar_objeto("Revivir", 1)
 
-	$IuCombate.connect("atacar_presionado", Callable(self, "on_attack_pressed"))
-	$IuCombate.connect("defender_presionado", Callable(self, "on_defend_pressed"))
-	$IuCombate.connect("magia_presionada", Callable(self, "on_magic_pressed"))
-	$IuCombate.connect("objeto_presionado", Callable(self, "on_item_pressed"))
+	$IuCombate.connect("atacar_presionado", Callable(self, "on_atacar_presionado"))
+	$IuCombate.connect("defender_presionado", Callable(self, "on_defender_presionado"))
+	$IuCombate.connect("magia_presionada", Callable(self, "on_magia_presionada"))
+	$IuCombate.connect("objeto_presionado", Callable(self, "on_objeto_presionado"))
 
-	$IuCombate.connect("magia_seleccionada", Callable(self, "resolve_magic"))
-	$IuCombate.connect("objeto_seleccionado", Callable(self, "resolve_item"))
+	$IuCombate.connect("magia_seleccionada", Callable(self, "resolver_magia"))
+	$IuCombate.connect("objeto_seleccionado", Callable(self, "resolver_objeto"))
 
 	start_turn()
 
 # --- OBJETOS ---
-func on_item_pressed():
+func on_objeto_presionado():
 	# Mostrar lista real de objetos con cantidades
-	var item_list = items_manager.get_item_list()
+	var item_list = items_manager.obtener_lista_objetos()
 	$IuCombate.show_item_menu(item_list)
 
 # --- PARTY ---
@@ -80,7 +80,6 @@ func setup_player_party():
 		var p = PLAYER_SCENES[names[i]].instantiate()
 		p.position = player_positions[i]
 		$PlayerParty.add_child(p)
-
 	players = $PlayerParty.get_children().filter(func(c): return c is Player)
 
 	players = $PlayerParty.get_children().filter(func(c): return c is Player)
@@ -103,23 +102,21 @@ func spawn_random_enemies():
 		var e = enemy_scene.instantiate()
 		e.position = markers[i].position
 		$EnemyGroup.add_child(e)
-
-	enemies = $EnemyGroup.get_children().filter(func(c): return c.has_method("take_damage"))
+	enemies = $EnemyGroup.get_children().filter(func(c): return c.has_method("recibir_daño"))
 
 # --- ORDEN DE TURNOS ---
 func build_turn_order():
 	turn_order.clear()
-	turn_order.append_array(players.filter(func(p): return p.alive))
-	turn_order.append_array(enemies.filter(func(e): return e.alive))
+	turn_order.append_array(players.filter(func(p): return p.vivo))
+	turn_order.append_array(enemies.filter(func(e): return e.vivo))
 	current_turn = 0
 
 # --- INICIO DE TURNO ---
 func start_turn():
-
-	if enemies.filter(func(e): return e.alive).is_empty():
+	if enemies.filter(func(e): return e.vivo).is_empty():
 		print("¡Victoria! No quedan enemigos.")
 		return
-	if players.filter(func(p): return p.alive).is_empty():
+	if players.filter(func(p): return p.vivo).is_empty():
 		print("Derrota. No quedan jugadores.")
 		return
 
@@ -137,7 +134,7 @@ func start_turn():
 					marc.stop()
 
 	var active = turn_order[current_turn]
-	if not active.alive:
+	if not active.vivo:
 		current_turn += 1
 		start_turn()
 		return
@@ -155,15 +152,15 @@ func start_turn():
 		$IuCombate.show_menu(active)
 		state = CombatState.MENU
 	else:
-		enemy_action(active)
+		accion_enemigo(active)
 
-func on_defend_pressed():
-		var active = turn_order[current_turn]
-		print(active.nombre, " se defiende.")
-		active.defense += 5   # ejemplo: aumenta defensa temporal
-		end_turn()
+func on_defender_presionado():
+	var active = turn_order[current_turn]
+	print(active.nombre, " se defiende.")
+	active.defense += 5   # ejemplo: aumenta defensa temporal
+	end_turn()
 
-func resolve_magic(spell_name: String):
+func resolver_magia(spell_name: String):
 	var active = turn_order[current_turn]
 
 	# Guardar el hechizo elegido
@@ -177,11 +174,11 @@ func resolve_magic(spell_name: String):
 
 
 
-func resolve_item(item_name: String):
+func resolver_objeto(item_name: String):
 	var active = turn_order[current_turn]
 	# Si el nombre viene con cantidad ("Poción x2"), extraer solo el nombre
 	var real_name = item_name.split(" x")[0]
-	var ok = items_manager.use_item(real_name, active)
+	var ok = items_manager.usar_objeto(real_name, active)
 	if ok:
 		print(active.nombre, " usa ", real_name, ". Efecto aplicado.")
 	else:
@@ -189,7 +186,7 @@ func resolve_item(item_name: String):
 	end_turn()
 
 func end_turn():
-	current_turn+=1
+	current_turn += 1
 	state = CombatState.MENU
 	start_turn()
 
@@ -264,21 +261,21 @@ func mostrar_derrota():
 
 
 func verificar_derrota():
-		var todos_muertos := true
+	var todos_muertos := true
 
-		for player in $PlayerParty.get_children():
-			if player.is_dead == false:
-				todos_muertos = false
-				break
+	for player in $PlayerParty.get_children():
+		if player.esta_muerto == false:
+			todos_muertos = false
+			break
 
-		if todos_muertos:
-			mostrar_derrota()
+	if todos_muertos:
+		mostrar_derrota()
 
 
 
 # --- BOTÓN ATACAR ---
-func on_attack_pressed():
-	if enemies.filter(func(e): return e.alive).is_empty():
+func on_atacar_presionado():
+	if enemies.filter(func(e): return e.vivo).is_empty():
 		print("No quedan enemigos. ¡Victoria!")
 		# Usar la función centralizada para manejar la victoria (muestra UI, anima y desactiva inputs)
 		show_victory()
@@ -287,31 +284,31 @@ func on_attack_pressed():
 	enemy_index = 0
 	update_enemy_selector()
 
-func on_magic_pressed():
+func on_magia_presionada():
 	# Solo mostrar menú de magias, sin activar selector todavía
 	$IuCombate.show_magic_menu(["Fuego", "Hielo", "Rayo"])
 
 
 # --- RESOLVER ACCIÓN ---
-func resolve_action(action: String, target: Node):
+func resolver_accion(action: String, target: Node):
 	var active = turn_order[current_turn]
 
 	if action == "attack":
-		if enemies.filter(func(e): return e.alive).is_empty():
+		if enemies.filter(func(e): return e.vivo).is_empty():
 			print("No quedan enemigos. ¡Victoria!")
 			return
-		if target == null or not target.alive:
+		if target == null or not target.vivo:
 			print("Objetivo inválido.")
 			return
 
 		print(active.nombre, " ataca a ", target.nombre)
-		target.take_damage(active.attack)
+		target.recibir_daño(active.attack)
 
-		if not target.alive:
-			enemies = enemies.filter(func(e): return e.alive)
+		if not target.vivo:
+			enemies = enemies.filter(func(e): return e.vivo)
 			enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
 			# Si ya no quedan enemigos, mostrar UI de victoria y terminar combate
-			if enemies.filter(func(e): return e.alive).is_empty():
+			if enemies.filter(func(e): return e.vivo).is_empty():
 				show_victory()
 				return
 
@@ -320,22 +317,22 @@ func resolve_action(action: String, target: Node):
 	start_turn()
 
 # --- ACCIÓN DE ENEMIGO ---
-func enemy_action(enemy: Enemy):
-	var alive_players = players.filter(func(p): return p.alive)
+func accion_enemigo(enemigo):
+	var alive_players = players.filter(func(p): return p.vivo)
 	if alive_players.is_empty():
 		print("Derrota. No quedan jugadores.")
 		return
 
 	var target = alive_players[randi() % alive_players.size()]
-	print(enemy.nombre, " ataca a ", target.nombre)
-	target.take_damage(enemy.attack)
+	print(enemigo.nombre, " ataca a ", target.nombre)
+	target.recibir_daño(enemigo.attack)
 
 	current_turn += 1
 	start_turn()
 
 # --- SELECTOR GLOBAL DE ENEMIGOS ---
 func update_enemy_selector():
-	var alive_enemies = enemies.filter(func(e): return e.alive)
+	var alive_enemies = enemies.filter(func(e): return e.vivo)
 	if alive_enemies.is_empty():
 		$EnemySelector.visible = false
 		return
@@ -349,7 +346,7 @@ func update_enemy_selector():
 func _process(_delta):
 
 	if state == CombatState.SELECT_ENEMY:
-		var alive_enemies = enemies.filter(func(e): return e.alive)
+		var alive_enemies = enemies.filter(func(e): return e.vivo)
 		if alive_enemies.is_empty():
 			return
 
@@ -372,35 +369,35 @@ func _process(_delta):
 
 				if spell_name == "Fuego" and active.mp >= 5:
 					print(active.nombre, " lanza ", spell_name, " a ", target_enemy.nombre)
-					target_enemy.take_damage(active.attack * 2)
+					target_enemy.recibir_daño(active.attack * 2)
 					active.mp -= 5
 					# Actualizar lista de enemigos y comprobar victoria
-					if not target_enemy.alive:
-						enemies = enemies.filter(func(e): return e.alive)
+					if not target_enemy.vivo:
+						enemies = enemies.filter(func(e): return e.vivo)
 						enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
-						if enemies.filter(func(e): return e.alive).is_empty():
+						if enemies.filter(func(e): return e.vivo).is_empty():
 							show_victory()
 							return
 				elif spell_name == "Hielo" and active.mp >= 4:
 					print(active.nombre, " lanza ", spell_name, " a ", target_enemy.nombre)
-					target_enemy.take_damage(active.attack * 1.5)
+					target_enemy.recibir_daño(active.attack * 1.5)
 					active.mp -= 4
 					# Actualizar lista de enemigos y comprobar victoria
-					if not target_enemy.alive:
-						enemies = enemies.filter(func(e): return e.alive)
+					if not target_enemy.vivo:
+						enemies = enemies.filter(func(e): return e.vivo)
 						enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
-						if enemies.filter(func(e): return e.alive).is_empty():
+						if enemies.filter(func(e): return e.vivo).is_empty():
 							show_victory()
 							return
 				elif spell_name == "Rayo" and active.mp >= 6:
 					print(active.nombre, " lanza ", spell_name, " a ", target_enemy.nombre)
-					target_enemy.take_damage(active.attack * 3)
+					target_enemy.recibir_daño(active.attack * 3)
 					active.mp -= 6
 					# Actualizar lista de enemigos y comprobar victoria
-					if not target_enemy.alive:
-						enemies = enemies.filter(func(e): return e.alive)
+					if not target_enemy.vivo:
+						enemies = enemies.filter(func(e): return e.vivo)
 						enemy_index = clamp(enemy_index, 0, max(enemies.size() - 1, 0))
-						if enemies.filter(func(e): return e.alive).is_empty():
+						if enemies.filter(func(e): return e.vivo).is_empty():
 							show_victory()
 							return
 				else:
@@ -409,4 +406,4 @@ func _process(_delta):
 				end_turn()
 			else:
 				# Si no hay hechizo pendiente, es ataque normal
-				resolve_action("attack", target_enemy)
+				resolver_accion("attack", target_enemy)

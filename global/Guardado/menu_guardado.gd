@@ -4,12 +4,12 @@ var slot_seleccionado := 0
 var mode := "load" # "load" or "save"
 
 func _ready():
-	# default update; if opened via `open(mode)` it'll refresh again
-	$slot1.text = get_slot_text(1)
-	$slot2.text = get_slot_text(2)
-	$slot3.text = get_slot_text(3)
+	# Al iniciar actualizo los textos de los slots; si se abre con abrir(mode) se refrescará otra vez
+	$slot1.text = obtener_texto_slot(1)
+	$slot2.text = obtener_texto_slot(2)
+	$slot3.text = obtener_texto_slot(3)
 
-	# Connect signals in case the TSCN doesn't have them connected
+	# Conectar botones por si la escena no viene con las conexiones
 	var c1 := Callable(self, "_on_slot1_pressed")
 	var c2 := Callable(self, "_on_slot2_pressed")
 	var c3 := Callable(self, "_on_slot3_pressed")
@@ -20,30 +20,30 @@ func _ready():
 	if not $slot3.is_connected("pressed", c3):
 		$slot3.connect("pressed", c3)
 
-	# Create a small message label (HUD) for transient messages
+	# Creo un Label pequeño para mensajes transitorios
 	if not has_node("Mensaje"):
-		var lbl := Label.new()
+		var lbl = Label.new()
 		lbl.name = "Mensaje"
 		lbl.text = ""
 		lbl.visible = false
 		add_child(lbl)
 
-	# Timer to hide the message
+	# Timer para ocultar el mensaje
 	if not has_node("MensajeTimer"):
-		var t := Timer.new()
+		var t = Timer.new()
 		t.name = "MensajeTimer"
 		t.one_shot = true
 		add_child(t)
 		t.connect("timeout", Callable(self, "_on_MensajeTimer_timeout"))
 
-	# Connect Confirmacion 'confirmed' signal to handler if not already
+	# Conectar la señal 'confirmed' del nodo Confirmacion si hace falta
 	var c4 := Callable(self, "_on_Confirmacion_confirmed")
 	if not $Confirmacion.is_connected("confirmed", c4):
 		$Confirmacion.connect("confirmed", c4)
 
 
-func _show_message(text: String, duration: float = 2.0) -> void:
-	# Show a transient HUD message; fallback to Confirmacion if HUD missing
+func _mostrar_mensaje(text: String, duration: float = 2.0) -> void:
+	# Mensaje HUD transitorio; si no existe, uso el popup de confirmación
 	if has_node("Mensaje"):
 		$Mensaje.text = text
 		$Mensaje.visible = true
@@ -53,33 +53,54 @@ func _show_message(text: String, duration: float = 2.0) -> void:
 		$Confirmacion.dialog_text = text
 		$Confirmacion.popup_centered()
 
+# Mantengo la firma antigua por compatibilidad
+func _show_message(text: String, duration: float = 2.0) -> void:
+	_mostrar_mensaje(text, duration)
+
 func _on_MensajeTimer_timeout() -> void:
 	if has_node("Mensaje"):
 		$Mensaje.visible = false
 
-func open(new_mode: String = "load") -> void:
+func abrir(new_mode: String = "load") -> void:
 	mode = new_mode
-	# refresh labels
-	$slot1.text = get_slot_text(1)
-	$slot2.text = get_slot_text(2)
-	$slot3.text = get_slot_text(3)
+	$slot1.text = obtener_texto_slot(1)
+	$slot2.text = obtener_texto_slot(2)
+	$slot3.text = obtener_texto_slot(3)
 	show()
 
-func get_slot_text(slot: int) -> String:
-	if not Sistema_guardado.slot_exists(slot):
+# Wrapper para compatibilidad
+func open(new_mode: String = "load") -> void:
+	abrir(new_mode)
+
+func obtener_texto_slot(slot: int) -> String:
+	if not Sistema_guardado.slot_existe(slot):
 		return "Slot %d - Vacío" % slot
-	var pos: Variant = Sistema_guardado.get_player_position(slot)
+	var pos: Variant = Sistema_guardado.obtener_posicion_jugador(slot)
+	var data: Dictionary = Sistema_guardado.cargar_slot(slot)
 	if pos == null:
 		return "Slot %d - Guardado" % slot
-	return "Slot %d - Pos:(%d,%d)" % [slot, int(pos.x), int(pos.y)]
+	var time_str = ""
+	if typeof(data) == TYPE_DICTIONARY and data.has("timestamp"):
+		time_str = " - %s" % str(data["timestamp"])
+	var playtime_str = ""
+	if typeof(data) == TYPE_DICTIONARY and data.has("playtime_minutes"):
+		var mins = int(data["playtime_minutes"])
+		var hrs = int(mins / 60.0)
+		var rem = int(mins % 60)
+		playtime_str = " - Tiempo: %dh %dm" % [hrs, rem]
+	return "Slot %d - Pos:(%d,%d)%s%s" % [slot, int(pos.x), int(pos.y), time_str, playtime_str]
+
+# Mantengo el nombre antiguo por compatibilidad
+func get_slot_text(slot: int) -> String:
+	return obtener_texto_slot(slot)
 
 func _on_slot1_pressed(): seleccionar_slot(1)
 func _on_slot2_pressed(): seleccionar_slot(2)
 func _on_slot3_pressed(): seleccionar_slot(3)
 
 func seleccionar_slot(slot: int):
-	if not Sistema_guardado.slot_exists(slot):
-		# If saving to an empty slot, allow it (we'll still select it)
+	if not Sistema_guardado.slot_existe(slot):
+		# Si guarda en slot vacío, igual lo selecciono
 		pass
 	slot_seleccionado = slot
 	if mode == "save":
@@ -90,44 +111,53 @@ func seleccionar_slot(slot: int):
 
 func _on_Confirmacion_confirmed():
 	if mode == "save":
-		# Save player position in this slot
+		# Guardar posición del jugador en este slot
 		var player := PlayerManager.jugador if typeof(PlayerManager) != TYPE_NIL else null
 		if player != null:
-			Sistema_guardado.save_player_position(slot_seleccionado, player.global_position)
-			_show_message("Guardado en Slot %d." % slot_seleccionado, 2.0)
-			# Close the menu after saving
+			# Intento detectar minutos de la sesión si el jugador lo provee
+			var session_minutes = 0
+			if player.has_method("get_session_minutes"):
+				session_minutes = int(player.get_session_minutes())
+			elif player.has("session_minutes"):
+				session_minutes = int(player.session_minutes)
+
+			Sistema_guardado.guardar_posicion_jugador(slot_seleccionado, player.global_position, session_minutes)
+			# Si se desea guardar timestamp, puede pasarse en los datos; el sistema acepta 'session_minutes' y 'timestamp'
+			_mostrar_mensaje("Guardado en Slot %d." % slot_seleccionado, 2.0)
+			# Cierro el menú después de guardar
 			queue_free()
 		else:
-			_show_message("No se encontró el jugador para guardar.", 2.0)
-		# Note: menu is closed on successful save; if needed, parent will re-open later
+			_mostrar_mensaje("No se encontró el jugador para guardar.", 2.0)
 		return
 
-	# load mode
-	var data := Sistema_guardado.load_slot(slot_seleccionado)
-	# Verificar que `load_slot` devolvió un Dictionary válido y no vacío
+	# Modo cargar
+	var data := Sistema_guardado.cargar_slot(slot_seleccionado)
+	# Verificar que devolvió un Dictionary válido y no vacío
 	if typeof(data) != TYPE_DICTIONARY or data.size() == 0:
 		$Confirmacion.dialog_text = "No se pudo cargar el Slot %d." % slot_seleccionado
 		$Confirmacion.popup_centered()
 		return
 
-	# Delegate applying data to the parent scene (e.g., Paramo)
+	# Delego la aplicación de datos a la escena padre por ejemplo Paramo
 	if has_method("_apply_loaded_data"):
 		call("_apply_loaded_data", data)
 	elif get_parent() != null and get_parent().has_method("load_game_data"):
 		get_parent().load_game_data(data)
 	else:
-		# fallback: try PlayerManager
+		# Fallback intento con PlayerManager
 		if typeof(PlayerManager) != TYPE_NIL and data.has("position"):
 			var p: Variant = data["position"]
 			if typeof(p) == TYPE_DICTIONARY and p.has("x") and p.has("y"):
 				var player_node := PlayerManager.jugador
 				if player_node != null:
 					player_node.global_position = Vector2(p["x"], p["y"])
+					# Si viene playtime lo aplico al nodo jugador si tiene la propiedad
+					if data.has("playtime_minutes") and player_node.has("playtime_minutes"):
+						player_node.playtime_minutes = int(data["playtime_minutes"])
 
-	# Show confirmation message for successful load and hide the menu
-	_show_message("Cargado en Slot %d." % slot_seleccionado, 2.0)
+	_mostrar_mensaje("Cargado en Slot %d." % slot_seleccionado, 2.0)
 	hide()
-	# refresh labels after load
-	$slot1.text = get_slot_text(1)
-	$slot2.text = get_slot_text(2)
-	$slot3.text = get_slot_text(3)
+	# Refrescar etiquetas después de cargar
+	$slot1.text = obtener_texto_slot(1)
+	$slot2.text = obtener_texto_slot(2)
+	$slot3.text = obtener_texto_slot(3)

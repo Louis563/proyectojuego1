@@ -19,16 +19,16 @@ var current_level_index := 0
 func can_go_to_next_level() -> bool:
     match current_level_index:
         0: # Granja -> Llanos
-            return GameState.npc_jose_done and GameState.boss_granja_defeated
+            return GameState.npc_jose_done or GameState.boss_granja_defeated # Antes era "and"
 
         1: # Llanos -> Bosque
-            return GameState.npc_indio_done and GameState.boss_llanos_defeated
+            return GameState.npc_indio_done or GameState.boss_llanos_defeated
 
         2: # Bosque -> Paramo (boss final)
             return (
                 GameState.npc_huesitos_done
                 and GameState.npc_ramon_done
-                and GameState.boss_bosque_defeated
+                or GameState.boss_bosque_defeated
             )
 		
         3: # Paramo -> fin

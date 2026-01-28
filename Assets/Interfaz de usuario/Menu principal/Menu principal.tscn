@@ -77,6 +77,18 @@ text = "SALIR"
 stream = ExtResource("6_3nvrv")
 autoplay = true
 
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 39.0
+offset_right = 516.0
+offset_bottom = 94.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "LA ULTIMA APARICIOM"
+
 [connection signal="pressed" from="VBoxContainer/Jugar" to="." method="_on_jugar_pressed"]
 [connection signal="pressed" from="VBoxContainer/Opciones" to="." method="_on_opciones_pressed"]
 [connection signal="pressed" from="VBoxContainer/Salir" to="." method="_on_salir_pressed"]
